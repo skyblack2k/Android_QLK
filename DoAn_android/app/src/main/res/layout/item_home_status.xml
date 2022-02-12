@@ -1,46 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/shadow_gray">
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/margin_10"
+    android:layout_marginBottom="@dimen/margin_10"
+    android:layout_marginStart="@dimen/margin_10"
+    app:cardBackgroundColor="@color/blueUi_2"
+    android:outlineAmbientShadowColor="@color/blueUi_2"
+
+    >
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_15dp"
         android:layout_margin="@dimen/item_margin"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/bg_white_rad20_shadow">
+
+        >
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/t1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hợp đồng chưa HT::"
-            android:textStyle="bold"
+            android:text="Hợp đồng chưa HT:"
             android:textSize="@dimen/home_status_textsize"
+            android:maxLines="1"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/t2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/home_status_margin"
             android:text="TextView"
             android:textSize="@dimen/home_status_textsize1"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintEnd_toEndOf="@+id/t1"
+            app:layout_constraintStart_toStartOf="@+id/t1"
+            app:layout_constraintTop_toBottomOf="@+id/t1" />
 
     </android.support.constraint.ConstraintLayout>
 
-</android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

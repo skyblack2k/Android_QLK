@@ -20,4 +20,9 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="mahd">Mã HĐ</string>
+    <string name="ncc">Nhà cung cấp</string>
+    <string name="a3">Người lập</string>
+    <string name="searchby">Tìm theo: </string>
+    <string name="mahd1">Mã HĐ:</string>
 </resources>

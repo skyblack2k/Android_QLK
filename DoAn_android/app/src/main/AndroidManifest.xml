@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="doan.ltn.doan_android">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,8 +11,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DoAn_android">
-        
-        <activity android:name=".Page.AddProviderActivity"></activity>
+        <activity android:name=".Page.ContractActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+    </activity>
+        <activity android:name=".Page.StoreActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+        </activity>
+        <activity android:name=".Page.ExportActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+        </activity>
+        <activity android:name=".Page.ImportActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+
+        </activity>
+        <activity android:name=".Page.ProviderAtcivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+        </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"

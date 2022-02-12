@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import doan.ltn.doan_android.Fragment.Home.HomeFragment;
+import doan.ltn.doan_android.Fragment.Product.ProductFragment;
+import doan.ltn.doan_android.Fragment.Setting.SettingFragment;
+import doan.ltn.doan_android.Fragment.User.UserFagment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,15 +32,15 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new HomeFragment();
                         break;
                     case R.id.storage_nav:
-                        fragment = new HomeFragment();
+                        fragment = new ProductFragment();
 
                         break;
                     case R.id.customer_nav:
-                        fragment = new HomeFragment();
+                        fragment = new UserFagment();
                         break;
 
                     case R.id.setting_nav:
-                        fragment = new HomeFragment();
+                        fragment = new SettingFragment();
                         break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.subactivity, fragment).commit();

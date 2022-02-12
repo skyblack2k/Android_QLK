@@ -1,8 +1,6 @@
 package doan.ltn.doan_android.Adapter;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +10,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import doan.ltn.doan_android.Fragment.Home.HomeFragment;
 import doan.ltn.doan_android.Interface.ItemButtomOnClick;
-import doan.ltn.doan_android.MainActivity;
 import doan.ltn.doan_android.Object.ButtomItem;
-import doan.ltn.doan_android.Page.AddProviderActivity;
 import doan.ltn.doan_android.R;
 
 public class HomeButtomAdapter extends RecyclerView.Adapter<HomeButtomAdapter.ViewHolder> {

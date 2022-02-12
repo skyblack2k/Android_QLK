@@ -14,18 +14,27 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import doan.ltn.doan_android.Adapter.HomeButtomAdapter;
+import doan.ltn.doan_android.Adapter.HomeStatusAdapter;
 import doan.ltn.doan_android.Interface.ItemButtomOnClick;
+import doan.ltn.doan_android.Interface.ItemClickListener;
 import doan.ltn.doan_android.Object.ButtomItem;
-import doan.ltn.doan_android.Page.AddProviderActivity;
+import doan.ltn.doan_android.Object.Status;
+import doan.ltn.doan_android.Page.ContractActivity;
+import doan.ltn.doan_android.Page.ExportActivity;
+import doan.ltn.doan_android.Page.ImportActivity;
+import doan.ltn.doan_android.Page.ProviderAtcivity;
+import doan.ltn.doan_android.Page.StoreActivity;
 import doan.ltn.doan_android.R;
 
 
 public class HomeFragment extends Fragment {
     HomeButtomAdapter adapter;
+    HomeStatusAdapter statusAdapter;
     ArrayList<ButtomItem> list;
+    ArrayList<Status> listStatus;
     RecyclerView recyclerView;
     ConstraintLayout bLayout;
-
+    RecyclerView statusView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,12 +47,17 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_home, container, false);
 
-        bLayout= (ConstraintLayout) view.findViewById(R.id.btn_frame);
-        recyclerView= (RecyclerView) view.findViewById(R.id.list);
-        recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(),3));
-        list=new ArrayList<>();
-        list.add(new ButtomItem(R.drawable.factory_1,"Thêm nhà cung cấp",1));
-        list.add(new ButtomItem(R.drawable.shop_6,"Thêm cửa hàng",2));
+       getID(view);
+        getData(view);
+
+
+
+        return view;
+    }
+
+    private void getData(View view) {
+        list.add(new ButtomItem(R.drawable.factory_1,"Nhà cung cấp",1));
+        list.add(new ButtomItem(R.drawable.shop_6,"Cửa hàng",2));
         list.add(new ButtomItem(R.drawable.log,"Lịch sử",3));
         list.add(new ButtomItem(R.drawable.contract_2,"Hợp đồng",4));
         list.add(new ButtomItem(R.drawable.car,"Xuất hàng",5));
@@ -52,37 +66,64 @@ public class HomeFragment extends Fragment {
         adapter =new HomeButtomAdapter(list, new ItemButtomOnClick() {
             @Override
             public void onClickListener(int key) {
-                Intent intent =new Intent(view.getContext(),AddProviderActivity.class);
+                Intent intent=null ;
                 switch (key)
                 {
                     case 1:
-                        startActivity(intent);
+                        intent= new Intent(view.getContext(), ProviderAtcivity.class);
                         break;
                     case 2:
-                        Toast.makeText(view.getContext(),String.valueOf(key),Toast.LENGTH_SHORT).show();
+                        intent= new Intent(view.getContext(), StoreActivity.class);
                         break;
                     case 3:
-                        Toast.makeText(view.getContext(),String.valueOf(key),Toast.LENGTH_SHORT).show();
+                        intent= new Intent(view.getContext(), ContractActivity.class);
                         break;
                     case 4:
-                        Toast.makeText(view.getContext(),String.valueOf(key),Toast.LENGTH_SHORT).show();
+                        intent= new Intent(view.getContext(), ContractActivity.class);
                         break;
                     case 5:
-                        Toast.makeText(view.getContext(),String.valueOf(key),Toast.LENGTH_SHORT).show();
+                        intent= new Intent(view.getContext(), ExportActivity.class);
                         break;
                     case 6:
-                        Toast.makeText(view.getContext(),String.valueOf(key),Toast.LENGTH_SHORT).show();
+                        intent= new Intent(view.getContext(), ImportActivity.class);
                         break;
 
                 }
 
+                if (intent != null )
+                {
+                    startActivity(intent);
+
+                }
 
             }
         });
-
         recyclerView.setAdapter(adapter);
 
+        listStatus.add(new Status(1,"HĐ chưa HT",10));
+        listStatus.add(new Status(2,"Phiếu xuất",122));
+        listStatus.add(new Status(3,"Phiếu nhập",103));
+        listStatus.add(new Status(4,"HĐ đã HT",103));
+        listStatus.add(new Status(5,"Phiếu xuất HT",20));
+        listStatus.add(new Status(6,"Phiếu nhập chưa HT",230));
+        statusAdapter= new HomeStatusAdapter(listStatus, new ItemClickListener() {
+            @Override
+            public void onItemClickListener(int i) {
 
-        return view;
+            }
+        });
+        statusView.setAdapter(statusAdapter);
     }
+
+    public void getID(View view)
+   {
+       bLayout= (ConstraintLayout) view.findViewById(R.id.btn_frame);
+       recyclerView= (RecyclerView) view.findViewById(R.id.list);
+       recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(),3));
+       statusView= (RecyclerView) view.findViewById(R.id.listStatus);
+       statusView.setLayoutManager(new GridLayoutManager(view.getContext(),2));
+       list=new ArrayList<>();
+       listStatus=new ArrayList<>();
+
+   }
 }
