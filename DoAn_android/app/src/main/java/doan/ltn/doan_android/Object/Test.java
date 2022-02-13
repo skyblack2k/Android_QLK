@@ -1,12 +1,12 @@
 package doan.ltn.doan_android.Object;
 
-public class test {
+public class Test {
     int userId;
     int id;
     String title;
     String completed;
 
-    public test(int userId, int id, String title, String completed) {
+    public Test(int userId, int id, String title, String completed) {
         this.userId = userId;
         this.id = id;
         this.title = title;

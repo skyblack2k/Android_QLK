@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Test!</string>
+    <string name="app_name">Quản lý kho</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Type your username</string>
     <string name="prompt_password">Type your password</string>
@@ -25,4 +25,11 @@
     <string name="a3">Người lập</string>
     <string name="searchby">Tìm theo: </string>
     <string name="mahd1">Mã HĐ:</string>
+    <string name="ContractTitle">Hợp đồng</string>
+    <string name="HT">Hoàn thành</string>
+    <string name="CHT">Chưa hoàn thành</string>
+    <string-array name="sapxep">
+        <item>Tăng dần</item>
+        <item>Giảm dần</item>
+    </string-array>
 </resources>

@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -19,7 +18,7 @@ import doan.ltn.doan_android.Interface.ItemButtomOnClick;
 import doan.ltn.doan_android.Interface.ItemClickListener;
 import doan.ltn.doan_android.Object.ButtomItem;
 import doan.ltn.doan_android.Object.Status;
-import doan.ltn.doan_android.Page.ContractActivity;
+import doan.ltn.doan_android.Page.Contract.ContractActivity;
 import doan.ltn.doan_android.Page.ExportActivity;
 import doan.ltn.doan_android.Page.ImportActivity;
 import doan.ltn.doan_android.Page.ProviderAtcivity;

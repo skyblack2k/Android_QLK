@@ -20,7 +20,6 @@ public class ImportActivity extends AppCompatActivity {
     ContractAdapter adapter;
     ArrayList<Contract> list;
     RecyclerView recyclerView;
-    SearchView searchView;
     Button btn_sort;
     RadioGroup radioGroup;
 
@@ -35,8 +34,7 @@ public class ImportActivity extends AppCompatActivity {
     private void getID() {
         recyclerView= (RecyclerView) findViewById(R.id.rec1);
         radioGroup= (RadioGroup) findViewById(R.id.g1);
-        searchView =(SearchView) findViewById(R.id.searchView);
-        btn_sort =(Button) findViewById(R.id.sort);
+
         list= new ArrayList<>();
     }
     public  void getData()
