@@ -94,7 +94,7 @@ public class ContractActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_menu,menu);
+        getMenuInflater().inflate(R.menu.toolbar_menu_v1, menu);
         MenuItem menuItem=menu.findItem(R.id.search_bar);
 
         SearchView searchView=(SearchView) menuItem.getActionView();

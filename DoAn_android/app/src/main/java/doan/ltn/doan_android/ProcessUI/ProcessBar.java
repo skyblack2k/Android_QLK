@@ -10,11 +10,10 @@ public class ProcessBar {
     Dialog dialog;
     Context context;
 
-
-    public ProcessBar(Context context) {
+    public void CreateProcessBar(Context context) {
         this.dialog = dialog;
         this.context = context;
-
+        start();
     }
     public void start()
     {
