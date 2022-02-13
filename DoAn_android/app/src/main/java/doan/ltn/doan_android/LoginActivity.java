@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import doan.ltn.doan_android.Interface.APIServices;
@@ -21,17 +22,57 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-
-
+        TextView btn_signup;
+        EditText txt_UserName;
+        Button Login;
+        EditText txt_Password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Button Login = (Button) findViewById(R.id.login);
-        EditText txt_UserName= findViewById(R.id.username);
-        txt_UserName.setText("admin");
-        EditText txt_Password=findViewById(R.id.password);
-        txt_Password.setText("matkhau");
+        getID();
+        getEvents();
+
+
+    }
+
+    @Override
+    public View onCreateView(String name, Context context, AttributeSet attrs) {
+        return super.onCreateView(name, context, attrs);
+
+
+    }
+    public void getID()
+    {
+
+        try
+        {
+
+            btn_signup = (TextView) findViewById(R.id.btn_signup);
+            Login = (Button) findViewById(R.id.login);
+            txt_UserName= findViewById(R.id.username);
+            txt_Password=findViewById(R.id.password);
+
+            txt_UserName.setText("admin");
+            txt_Password.setText("matkhau");
+        }
+        catch(Exception exception)
+        {}
+
+
+    }
+    public  void  getEvents()
+    {
+        btn_signup.setOnClickListener(v -> {
+            try
+            {
+                Intent intent=new Intent(this,MainActivity.class);
+                startActivity(intent);
+            }
+            catch (Exception exception)
+            {}
+
+        });
 
         Login.setOnClickListener(v ->
         {
@@ -70,13 +111,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         });
-    }
-
-    @Override
-    public View onCreateView(String name, Context context, AttributeSet attrs) {
-        return super.onCreateView(name, context, attrs);
-
-
     }
 
 }

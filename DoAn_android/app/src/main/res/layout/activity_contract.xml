@@ -15,9 +15,9 @@
         android:layout_margin="@dimen/margin_filter"
         android:padding="@dimen/edittext_padding"
         android:text="@string/searchby"
+        android:textColor="@color/black"
         android:textSize="@dimen/item_button_text"
         android:textStyle="bold"
-        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/horizontalScrollView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/horizontalScrollView" />
@@ -71,6 +71,16 @@
                 android:button="@android:color/transparent"
                 android:padding="5dp"
                 android:text="@string/a3" />
+            <RadioButton
+
+                android:id="@+id/a4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/radiobutton"
+                android:button="@android:color/transparent"
+                android:padding="5dp"
+                android:text="@string/a3" />
 
         </RadioGroup>
     </HorizontalScrollView>
@@ -98,17 +108,9 @@
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@id/horizontalScrollView">
 
-        <RadioGroup
-            android:id="@+id/g2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
 
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView">
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/b1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -119,18 +121,7 @@
                 android:text="@string/HT" />
 
 
-            <RadioButton
-                android:id="@+id/b2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/radiobutton"
-                android:button="@android:color/transparent"
-                android:padding="5dp"
-                android:text="@string/CHT" />
 
-
-        </RadioGroup>
     </HorizontalScrollView>
 
     <android.support.v7.widget.AppCompatSpinner
@@ -140,10 +131,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/horizontalScrollView1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/horizontalScrollView1"
-        app:layout_constraintTop_toTopOf="@+id/horizontalScrollView1"
-        >
-    </android.support.v7.widget.AppCompatSpinner>
+        app:layout_constraintTop_toTopOf="@+id/horizontalScrollView1"></android.support.v7.widget.AppCompatSpinner>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rec1"

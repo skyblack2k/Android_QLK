@@ -28,6 +28,8 @@
     <string name="ContractTitle">Hợp đồng</string>
     <string name="HT">Hoàn thành</string>
     <string name="CHT">Chưa hoàn thành</string>
+    <string name="ExportTitle">PHIẾU XUẤT</string>
+    <string name="MaonItem">Mã:</string>
     <string-array name="sapxep">
         <item>Tăng dần</item>
         <item>Giảm dần</item>
