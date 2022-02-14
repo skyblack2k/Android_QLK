@@ -70,6 +70,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             name=itemView.findViewById(R.id.ncc);
             status=itemView.findViewById(R.id.status);
             icon=itemView.findViewById(R.id.i1);
+
         }
 
     }
