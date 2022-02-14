@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import doan.ltn.doan_android.Adapter.ContractAdapter;
+import doan.ltn.doan_android.Adapter.ExportAdapter;
 import doan.ltn.doan_android.Interface.ItemClickListener;
 import doan.ltn.doan_android.Object.Contract;
 import doan.ltn.doan_android.Object.Export;
@@ -24,11 +26,12 @@ import doan.ltn.doan_android.Page.Contract.ContractActivity;
 import doan.ltn.doan_android.R;
 
 public class ExportActivity extends AppCompatActivity {
-    ContractAdapter adapter;
+    ExportAdapter adapter;
     ArrayList<Export> listExport;
     RecyclerView recyclerView;
     Button btn_sort;
     RadioGroup radioGroup;
+    CheckBox HoanThanh;
     RadioButton a1,a2,a3,a4,a5;
     private Spinner spinner;
 
@@ -55,9 +58,10 @@ public class ExportActivity extends AppCompatActivity {
             a2.setText("Cửa hàng");
             a3.setText("Người lập");
             a4.setText("Người duyệt");
+            HoanThanh=(CheckBox) findViewById(R.id.b1);
             recyclerView= (RecyclerView) findViewById(R.id.rec1);
             radioGroup= (RadioGroup) findViewById(R.id.g1);
-
+            recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
             spinner= (Spinner) findViewById(R.id.textinput);
             ArrayAdapter<CharSequence> spinerAdapter=ArrayAdapter.createFromResource(this,R.array.sapxep,R.layout.support_simple_spinner_dropdown_item);
             spinerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
@@ -72,12 +76,22 @@ public class ExportActivity extends AppCompatActivity {
     }
     public  void getData()
     {
+        for (int i=0; i<10;i++)
+        {
+            listExport.add(new Export(i,"14/02/2020","14/02/2020","14/02/2022",1,1,1,false));
+        }
 
 
     }
     public  void getEvents()
     {
+        adapter=new ExportAdapter(listExport, new ItemClickListener() {
+            @Override
+            public void onItemClickListener(int i) {
 
+            }
+        });
+        recyclerView.setAdapter(adapter);
     }
 
     @Override

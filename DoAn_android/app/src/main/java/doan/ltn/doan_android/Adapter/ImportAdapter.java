@@ -12,15 +12,16 @@ import java.util.ArrayList;
 
 import doan.ltn.doan_android.Interface.ItemClickListener;
 import doan.ltn.doan_android.Object.Contract;
+import doan.ltn.doan_android.Object.Import;
 import doan.ltn.doan_android.R;
 
 public class ImportAdapter extends RecyclerView.Adapter<ImportAdapter.ViewHolder> {
 
-    private ArrayList<Contract> list;
+    private ArrayList<Import> listImport;
     private ItemClickListener itemClickListener;
 
-    public ImportAdapter(ArrayList<Contract> list, ItemClickListener itemClickListener) {
-    this.list=list;
+    public ImportAdapter(ArrayList<Import> list, ItemClickListener itemClickListener) {
+    this.listImport=list;
     this.itemClickListener=itemClickListener;
 
     }
@@ -37,9 +38,9 @@ public class ImportAdapter extends RecyclerView.Adapter<ImportAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ImportAdapter.ViewHolder viewHolder, int i) {
-        Contract item=list.get(i);
-        viewHolder.ma.setText(String.valueOf(item.getMaHD()));
-        viewHolder.name.setText(String.valueOf(item.getNCC()));
+        Import item=listImport.get(i);
+        viewHolder.ma.setText(String.valueOf(String.valueOf(item.getID())));
+        viewHolder.name.setText(String.valueOf(item.getNguoiGiao()));
 
         viewHolder.date.setText(String.valueOf(item.getNgayLap()));
         viewHolder.itemView.setOnClickListener(v -> {
@@ -50,8 +51,8 @@ public class ImportAdapter extends RecyclerView.Adapter<ImportAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        if (list !=null)
-        {return list.size();}
+        if (listImport !=null)
+        {return listImport.size();}
         return 0;
     }
 
