@@ -44,5 +44,6 @@
     <dimen name="marginTextboxSetting">10dp</dimen>
     <dimen name="text_size_TextboxSetting">16sp</dimen>
     <dimen name="text_size_TextboxSetting1">14sp</dimen>
+    <dimen name="marginItem">5dp</dimen>
 
 </resources>
