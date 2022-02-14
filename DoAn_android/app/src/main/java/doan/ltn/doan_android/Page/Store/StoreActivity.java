@@ -1,5 +1,6 @@
 package doan.ltn.doan_android.Page.Store;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,10 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -22,6 +25,8 @@ import doan.ltn.doan_android.Interface.ItemClickListener;
 import doan.ltn.doan_android.Object.Contract;
 import doan.ltn.doan_android.Object.Provider;
 import doan.ltn.doan_android.Object.Store;
+import doan.ltn.doan_android.Page.Contract.ContractActivity;
+import doan.ltn.doan_android.Page.Contract.DetailContractActivity;
 import doan.ltn.doan_android.Page.Provider.ProviderAtcivity;
 import doan.ltn.doan_android.R;
 
@@ -33,11 +38,16 @@ public class StoreActivity extends AppCompatActivity {
     private RadioButton a1,a2,a4,a3;
     Button btn_sort;
     RadioGroup radioGroup;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contract);
+        getSupportActionBar().setTitle("Cửa Hàng");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         getID();
         getData();
         getEvents();
@@ -58,6 +68,10 @@ public class StoreActivity extends AppCompatActivity {
         radioGroup.check(R.id.a1);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
 
+        spinner= (Spinner) findViewById(R.id.textinput);
+        ArrayAdapter<CharSequence> spinerAdapter=ArrayAdapter.createFromResource(this,R.array.sapxep,R.layout.support_simple_spinner_dropdown_item);
+        spinerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinner.setAdapter(spinerAdapter);
         list= new ArrayList<>();
     }
     public  void getData()
@@ -77,7 +91,8 @@ public class StoreActivity extends AppCompatActivity {
         adapter = new StoreAdapter(list, new ItemClickListener() {
             @Override
             public void onItemClickListener(int i) {
-
+                Intent intent =new Intent(StoreActivity.this, DetailStoreActivity.class);
+                startActivity(intent);
             }
         });
         recyclerView.setAdapter(adapter);

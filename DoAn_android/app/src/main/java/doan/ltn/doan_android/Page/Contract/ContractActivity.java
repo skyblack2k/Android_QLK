@@ -1,5 +1,6 @@
 package doan.ltn.doan_android.Page.Contract;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -30,7 +32,7 @@ public class ContractActivity extends AppCompatActivity {
     Button btn_sort;
     RadioGroup radioGroup;
     private RadioButton a1,a2,a3,a4;
-
+    ArrayAdapter<CharSequence>  spinerAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +57,7 @@ public class ContractActivity extends AppCompatActivity {
             radioGroup= (RadioGroup) findViewById(R.id.g1);
             radioGroup.check(R.id.a1);
             spinner= (Spinner) findViewById(R.id.textinput);
-            ArrayAdapter<CharSequence>  spinerAdapter=ArrayAdapter.createFromResource(ContractActivity.this,R.array.sapxep,R.layout.support_simple_spinner_dropdown_item);
+            spinerAdapter=ArrayAdapter.createFromResource(ContractActivity.this,R.array.sapxep,R.layout.support_simple_spinner_dropdown_item);
             spinerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
             spinner.setAdapter(spinerAdapter);
             list= new ArrayList<>();
@@ -68,6 +70,8 @@ public class ContractActivity extends AppCompatActivity {
     }
     public  void getData()
     {
+
+
         try {
             for (int i=0; i<10;i++)
             {
@@ -79,7 +83,8 @@ public class ContractActivity extends AppCompatActivity {
                 @Override
                 public void onItemClickListener(int i) {
 
-                    Toast.makeText(ContractActivity.this,String.valueOf(i),Toast.LENGTH_LONG).show();
+                    Intent intent =new Intent(ContractActivity.this,DetailContractActivity.class);
+                    startActivity(intent);
                 }
             });
             recyclerView.setAdapter(adapter);
@@ -97,6 +102,18 @@ public class ContractActivity extends AppCompatActivity {
     public  void getEvents()
     {
 
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                Toast.makeText(ContractActivity.this, spinerAdapter.getItem(position).toString(),Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 

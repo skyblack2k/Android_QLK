@@ -5,29 +5,34 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DoAn_android">
+        android:theme="@style/Theme.DoAn_android"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Page.Store.DetailStoreActivity"
+            android:parentActivityName=".Page.Store.StoreActivity"/>
+        <activity android:name=".Page.Contract.DetailContractActivity"
+            android:parentActivityName=".Page.Contract.ContractActivity"/>
+        <activity android:name=".Page.Provider.DetailProviderActivity"
+            android:parentActivityName=".Page.Provider.ProviderAtcivity"/>
+        <activity android:name=".Page.Import.DetailImportActivity"
+            android:parentActivityName=".Page.Import.ImportActivity"/>
+        <activity android:name=".Page.Export.DetailExportActivity"
+            android:parentActivityName=".Page.Export.ExportActivity"/>
         <activity android:name=".Page.Contract.ContractActivity"
-          >
-    </activity>
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".Page.Store.StoreActivity"
-          >
-        </activity>
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".Page.Export.ExportActivity"
-           >
-        </activity>
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".Page.Import.ImportActivity"
-         >
-
-        </activity>
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".Page.Provider.ProviderAtcivity"
-            >
-        </activity>
+            android:parentActivityName=".MainActivity"/>
+
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"

@@ -5,8 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_detail_1"
     tools:context=".Page.Contract.DetailContractActivity"
-   >
+    >
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,7 +28,7 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/detail_fieldmargin">
 
 
@@ -102,9 +103,9 @@
                 <TextView
                     android:id="@+id/tt6"
                     android:layout_width="wrap_content"
-
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/detail_fieldmargin"
+                    android:layout_marginBottom="@dimen/detail_fieldmargin"
                     android:text="Ngày hoàn thành"
                     android:textSize="@dimen/detail_textsize"
                     app:layout_constraintStart_toStartOf="@+id/tt1"
@@ -174,7 +175,77 @@
                     app:layout_constraintStart_toEndOf="@+id/tt5"
                     app:layout_constraintTop_toTopOf="@+id/tt5" />
 
+                <TextView
+                    android:id="@+id/tt7"
+                    android:layout_width="wrap_content"
 
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/detail_fieldmargin"
+                    android:layout_marginBottom="@dimen/detail_fieldmargin"
+                    android:text="Ngày hoàn thành"
+                    android:textSize="@dimen/detail_textsize"
+                    app:layout_constraintStart_toStartOf="@+id/tt1"
+                    app:layout_constraintTop_toBottomOf="@+id/tt6"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/ct7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/detail_fstartmargin"
+                    android:maxLines="1"
+                    android:text="Nội dung 1"
+                    android:textSize="@dimen/detail_textsize"
+                    app:layout_constraintBottom_toBottomOf="@+id/tt7"
+                    app:layout_constraintStart_toEndOf="@+id/tt7"
+                    app:layout_constraintTop_toTopOf="@+id/tt7" />
+                <TextView
+                    android:id="@+id/tt8"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/detail_fieldmargin"
+                    android:layout_marginBottom="@dimen/detail_fieldmargin"
+                    android:text="Ngày hoàn thành"
+                    android:textSize="@dimen/detail_textsize"
+                    app:layout_constraintStart_toStartOf="@+id/tt1"
+                    app:layout_constraintTop_toBottomOf="@+id/tt7"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/ct8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/detail_fstartmargin"
+                    android:maxLines="1"
+                    android:text="Nội dung 1"
+                    android:textSize="@dimen/detail_textsize"
+                    app:layout_constraintBottom_toBottomOf="@+id/tt8"
+                    app:layout_constraintStart_toEndOf="@+id/tt8"
+                    app:layout_constraintTop_toTopOf="@+id/tt8" />
+                <TextView
+                    android:id="@+id/tt9"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/detail_fieldmargin"
+                    android:text="Ngày hoàn thành"
+                    android:textSize="@dimen/detail_textsize"
+                    app:layout_constraintStart_toStartOf="@+id/tt1"
+                    app:layout_constraintTop_toBottomOf="@+id/tt8"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/ct9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/detail_fstartmargin"
+                    android:maxLines="1"
+                    android:text="Nội dung 1"
+                    android:textSize="@dimen/detail_textsize"
+                    app:layout_constraintBottom_toBottomOf="@+id/tt9"
+                    app:layout_constraintStart_toEndOf="@+id/tt9"
+                    app:layout_constraintTop_toTopOf="@+id/tt9" />
             </android.support.constraint.ConstraintLayout>
         </android.support.v7.widget.CardView>
         <TextView
@@ -199,6 +270,7 @@
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recDetail"
+                android:padding="@dimen/detail_fieldmargin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
 

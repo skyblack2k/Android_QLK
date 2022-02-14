@@ -1,4 +1,4 @@
-package doan.ltn.doan_android.Page.Contract;
+package doan.ltn.doan_android.Page.Import;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 import doan.ltn.doan_android.Object.DetailTitle;
 import doan.ltn.doan_android.R;
 
-public class DetailContractActivity extends AppCompatActivity {
+public class DetailImportActivity extends AppCompatActivity {
     TextView t1,t2,t3,t4,t5,t6,c1,c2,c3,c4,c5,c6,titleForList;
     RecyclerView recyclerView;
 
@@ -20,39 +20,65 @@ public class DetailContractActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_contract);
-        getSupportActionBar().setTitle("Chi tiết hợp đồng");
+        getSupportActionBar().setTitle("Chi tiết phiếu nhập");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         getID();
         getData();
         getEvents();
     }
     public void getID() {
-        t1= (TextView) findViewById(R.id.tt1);
-        t2= (TextView) findViewById(R.id.tt2);
-        t3= (TextView) findViewById(R.id.tt3);
-        t4= (TextView) findViewById(R.id.tt4);
-        t5= (TextView) findViewById(R.id.tt5);
-        t6= (TextView) findViewById(R.id.tt6);
-        c1= (TextView) findViewById(R.id.ct1);
-        c2= (TextView) findViewById(R.id.ct2);
-        c3= (TextView) findViewById(R.id.ct3);
-        c4= (TextView) findViewById(R.id.ct4);
-        c5= (TextView) findViewById(R.id.ct5);
-        c6= (TextView) findViewById(R.id.ct6);
-        t6.setVisibility(View.GONE);
-        c6.setVisibility(View.GONE);
-        titleForList=(TextView) findViewById(R.id.titleforlist);
+        try {
+            t1= (TextView) findViewById(R.id.tt1);
+            t2= (TextView) findViewById(R.id.tt2);
+            t3= (TextView) findViewById(R.id.tt3);
+            t4= (TextView) findViewById(R.id.tt4);
+            t5= (TextView) findViewById(R.id.tt5);
+            t6= (TextView) findViewById(R.id.tt6);
+            c1= (TextView) findViewById(R.id.ct1);
+            c2= (TextView) findViewById(R.id.ct2);
+            c3= (TextView) findViewById(R.id.ct3);
+            c4= (TextView) findViewById(R.id.ct4);
+            c5= (TextView) findViewById(R.id.ct5);
+            c6= (TextView) findViewById(R.id.ct6);
 
-        recyclerView = (RecyclerView) findViewById( R.id.recDetail);
+            DetailTitle detailTitle=new DetailTitle("Thuộc hợp đồng:","Người lập:","Ngày lập:","Người giao:","Ngày hoàn Thành:","ko có");
+            setTitle(detailTitle);
+            t6.setVisibility(View.GONE);
+            c6.setVisibility(View.GONE);
+            titleForList=(TextView) findViewById(R.id.titleforlist);
+
+            recyclerView = (RecyclerView) findViewById( R.id.recDetail);
+        }
+        catch (Exception exception)
+        {
+
+        }
+
     }
     public void getData()
     {
+        try
+        {
+
+        }
+        catch (Exception exception)
+        {
+
+        }
 
     }
     public  void getEvents()
     {
+        try
+        {
 
+        }
+        catch (Exception exception)
+        {
+
+        }
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu_v1, menu);
@@ -85,4 +111,6 @@ public class DetailContractActivity extends AppCompatActivity {
         t6.setText(title.getC6());
 
     }
+
+
 }

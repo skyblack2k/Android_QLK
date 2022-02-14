@@ -1,5 +1,6 @@
 package doan.ltn.doan_android.Page.Export;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,6 +24,7 @@ import doan.ltn.doan_android.Interface.ItemClickListener;
 import doan.ltn.doan_android.Object.Contract;
 import doan.ltn.doan_android.Object.Export;
 import doan.ltn.doan_android.Page.Contract.ContractActivity;
+import doan.ltn.doan_android.Page.Contract.DetailContractActivity;
 import doan.ltn.doan_android.R;
 
 public class ExportActivity extends AppCompatActivity {
@@ -88,7 +90,8 @@ public class ExportActivity extends AppCompatActivity {
         adapter=new ExportAdapter(listExport, new ItemClickListener() {
             @Override
             public void onItemClickListener(int i) {
-
+                Intent intent =new Intent(ExportActivity.this, DetailExportActivity.class);
+                startActivity(intent);
             }
         });
         recyclerView.setAdapter(adapter);

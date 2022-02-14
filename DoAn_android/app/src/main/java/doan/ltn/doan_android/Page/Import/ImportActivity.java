@@ -1,5 +1,6 @@
 package doan.ltn.doan_android.Page.Import;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,10 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,6 +23,8 @@ import doan.ltn.doan_android.Adapter.ImportAdapter;
 import doan.ltn.doan_android.Interface.ItemClickListener;
 import doan.ltn.doan_android.Object.Contract;
 import doan.ltn.doan_android.Object.Import;
+import doan.ltn.doan_android.Page.Contract.ContractActivity;
+import doan.ltn.doan_android.Page.Contract.DetailContractActivity;
 import doan.ltn.doan_android.R;
 
 public class ImportActivity extends AppCompatActivity {
@@ -30,11 +35,16 @@ public class ImportActivity extends AppCompatActivity {
     RadioGroup radioGroup;
     CheckBox HoanThanh;
     private RadioButton a1,a2,a4,a3;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contract);
+        getSupportActionBar().setTitle("Phiếu Nhập");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         getID();
         getData();
         getEvents();
@@ -55,6 +65,11 @@ public class ImportActivity extends AppCompatActivity {
         radioGroup.check(R.id.a1);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
         listImport= new ArrayList<>();
+        spinner= (Spinner) findViewById(R.id.textinput);
+        ArrayAdapter<CharSequence> spinerAdapter=ArrayAdapter.createFromResource(this,R.array.sapxep,R.layout.support_simple_spinner_dropdown_item);
+        spinerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinner.setAdapter(spinerAdapter);
+        
     }
     public  void getData()
     {
@@ -73,7 +88,8 @@ public class ImportActivity extends AppCompatActivity {
         adapter=new ImportAdapter(listImport, new ItemClickListener() {
             @Override
             public void onItemClickListener(int i) {
-
+                Intent intent =new Intent(ImportActivity.this, DetailImportActivity.class);
+                startActivity(intent);
             }
         });
 
