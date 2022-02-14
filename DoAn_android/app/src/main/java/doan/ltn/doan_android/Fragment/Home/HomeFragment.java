@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_home, container, false);
 
        getID(view);
-        getData(view);
+       getData(view);
 
 
 

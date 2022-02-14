@@ -53,12 +53,9 @@ public class ImportActivity extends AppCompatActivity {
         a1=(RadioButton) findViewById(R.id.a1);
         a2=(RadioButton) findViewById(R.id.a2);
         a3=(RadioButton) findViewById(R.id.a3);
-        a4=(RadioButton) findViewById(R.id.a4);
         a1.setText("Mã PN");
         a2.setText("Mã HĐ");
         a3.setText("Người lập");
-        a4.setText("Người duyệt");
-        HoanThanh=(CheckBox) findViewById(R.id.b1);
 
         recyclerView= (RecyclerView) findViewById(R.id.rec1);
         radioGroup= (RadioGroup) findViewById(R.id.g1);

@@ -56,12 +56,10 @@ public class StoreActivity extends AppCompatActivity {
         a1=(RadioButton) findViewById(R.id.a1);
         a2=(RadioButton) findViewById(R.id.a2);
         a3=(RadioButton) findViewById(R.id.a3);
-        a4=(RadioButton) findViewById(R.id.a4);
         a1.setText("Mã CH");
         a2.setText("Tên CH");
         a3.setText("Địa chỉ");
         a4.setText("SDT");
-        HoanThanh=(CheckBox) findViewById(R.id.b1);
 
         recyclerView= (RecyclerView) findViewById(R.id.rec1);
         radioGroup= (RadioGroup) findViewById(R.id.g1);

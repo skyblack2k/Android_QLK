@@ -8,12 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ public class ProviderAtcivity extends AppCompatActivity {
     ArrayList<Provider> list;
     RecyclerView recyclerView;
     CheckBox HoanThanh;
-    private RadioButton a1,a2,a4,a3;
+    private RadioButton a1,a2,a3;
     Button btn_sort;
     RadioGroup radioGroup;
     private Spinner spinner;
@@ -53,12 +55,14 @@ public class ProviderAtcivity extends AppCompatActivity {
         a1=(RadioButton) findViewById(R.id.a1);
         a2=(RadioButton) findViewById(R.id.a2);
         a3=(RadioButton) findViewById(R.id.a3);
-        a4=(RadioButton) findViewById(R.id.a4);
         a1.setText("Mã NCC");
         a2.setText("Tên NCC");
         a3.setText("Địa chỉ");
-        a4.setText("SDT");
-        HoanThanh=(CheckBox) findViewById(R.id.b1);
+
+        TextView lb_Status = (TextView) findViewById(R.id.textView4);
+        lb_Status.setVisibility(View.GONE);
+        RadioGroup rg_Status = (RadioGroup) findViewById(R.id.rg_Status);
+        rg_Status.setVisibility(View.GONE);
 
         recyclerView= (RecyclerView) findViewById(R.id.rec1);
         radioGroup= (RadioGroup) findViewById(R.id.g1);

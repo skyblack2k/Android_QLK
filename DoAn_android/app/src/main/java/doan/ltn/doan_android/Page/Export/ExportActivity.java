@@ -34,7 +34,7 @@ public class ExportActivity extends AppCompatActivity {
     Button btn_sort;
     RadioGroup radioGroup;
     CheckBox HoanThanh;
-    RadioButton a1,a2,a3,a4,a5;
+    RadioButton a1,a2,a3;
     private Spinner spinner;
 
     @Override
@@ -55,12 +55,9 @@ public class ExportActivity extends AppCompatActivity {
             a1=(RadioButton) findViewById(R.id.a1);
             a2=(RadioButton) findViewById(R.id.a2);
             a3=(RadioButton) findViewById(R.id.a3);
-            a4=(RadioButton) findViewById(R.id.a4);
             a1.setText("Mã PX");
             a2.setText("Cửa hàng");
             a3.setText("Người lập");
-            a4.setText("Người duyệt");
-            HoanThanh=(CheckBox) findViewById(R.id.b1);
             recyclerView= (RecyclerView) findViewById(R.id.rec1);
             radioGroup= (RadioGroup) findViewById(R.id.g1);
             recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));

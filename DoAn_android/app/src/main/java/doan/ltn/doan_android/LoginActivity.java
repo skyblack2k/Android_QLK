@@ -84,22 +84,28 @@ public class LoginActivity extends AppCompatActivity {
             APIServices.apiservices.User_Login(rqUserName, rqPassword).enqueue(new Callback<ResultString>() {
                 @Override
                 public void onResponse(Call<ResultString> call, Response<ResultString> response) {
-                    SharedFunction.HideProcessBar();
-                    ResultString rs = response.body();
-                    if(response.isSuccessful()){
-                        if(rs != null)
-                            if(rs.getErrCodeField() == 2){
-                                Constants.Token = rs.getDataField();
-                                Toast.makeText(LoginActivity.this, Constants.Token, Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
-                            }
-                            else{
-                                Toast.makeText(LoginActivity.this, "Null reponse! " , Toast.LENGTH_LONG).show();
-                            }
+                    try{
+                        SharedFunction.HideProcessBar();
+                        ResultString rs = response.body();
+                        if(response.isSuccessful()){
+                            if(rs != null)
+                                if(rs.getErrCodeField() == 2){
+                                    Constants.Token = rs.getDataField();
+                                    Toast.makeText(LoginActivity.this, Constants.Token, Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                }
+                                else{
+                                    Toast.makeText(LoginActivity.this, "Null reponse! " , Toast.LENGTH_LONG).show();
+                                }
+                        }
+                        else{
+                            Toast.makeText(LoginActivity.this, "Response error: " + response.code() + " " + response.message(), Toast.LENGTH_LONG).show();
+                        }
                     }
-                    else{
-                        Toast.makeText(LoginActivity.this, "Response error: " + response.code() + " " + response.message(), Toast.LENGTH_LONG).show();
+                    catch (Exception ex){
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
                     }
                 }
 

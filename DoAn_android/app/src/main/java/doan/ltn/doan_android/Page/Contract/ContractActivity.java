@@ -43,7 +43,8 @@ public class ContractActivity extends AppCompatActivity {
     Spinner spinner;
     Button btn_sort;
     RadioGroup radioGroup;
-    private RadioButton a1,a2,a3,a4;
+    private RadioButton a1,a2,a3;
+    RadioGroup  rg_Status;
     ArrayAdapter<CharSequence>  spinerAdapter;
 
     //Param for search
@@ -74,11 +75,10 @@ public class ContractActivity extends AppCompatActivity {
             a1=(RadioButton) findViewById(R.id.a1);
             a2=(RadioButton) findViewById(R.id.a2);
             a3=(RadioButton) findViewById(R.id.a3);
-            a4=(RadioButton) findViewById(R.id.a4);
-            a4.setVisibility(View.INVISIBLE);
             recyclerView= (RecyclerView) findViewById(R.id.rec1);
             radioGroup= (RadioGroup) findViewById(R.id.g1);
-            radioGroup.check(R.id.a1);
+            //radioGroup.check(R.id.a1);
+            rg_Status = (RadioGroup) findViewById(R.id.rg_Status);
             spinner= (Spinner) findViewById(R.id.textinput);
             spinerAdapter=ArrayAdapter.createFromResource(ContractActivity.this,R.array.sapxep,R.layout.support_simple_spinner_dropdown_item);
             spinerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
@@ -89,8 +89,8 @@ public class ContractActivity extends AppCompatActivity {
         {
 
         }
-
     }
+
     public void getData()
     {
         //Initialize
@@ -119,6 +119,26 @@ public class ContractActivity extends AppCompatActivity {
 
     public void getEvents()
     {
+        //
+        rg_Status.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.cb_Status_CHT:
+                        _status = 0;
+                        break;
+                    case R.id.cb_Status_HT:
+                        _status = 1;
+                        break;
+                    default:
+                        _status = -1;
+                        break;
+                }
+                Toast.makeText(ContractActivity.this, String.valueOf(_status), Toast.LENGTH_LONG).show();
+                Search();
+            }
+        });
+        //
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -144,15 +164,15 @@ public class ContractActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 // xử lí tìm kiếm
-                Toast.makeText(ContractActivity.this, "Keyword: " + s, Toast.LENGTH_LONG);
                 _searchValue = s;
+                Toast.makeText(ContractActivity.this, "Keyword: " + _searchValue, Toast.LENGTH_LONG).show();
                 Search();
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                Toast.makeText(ContractActivity.this, "Keyword: " + s, Toast.LENGTH_LONG);
+                //Toast.makeText(ContractActivity.this, "Keyword: " + s, Toast.LENGTH_LONG);
                 return false;
             }
         });
@@ -161,6 +181,20 @@ public class ContractActivity extends AppCompatActivity {
 
     private void Search(){
         try{
+            switch (radioGroup.getCheckedRadioButtonId()){
+                case R.id.a1:
+                    _searchType = 1;
+                    break;
+                case R.id.a2:
+                    _searchType = 2;
+                    break;
+                case R.id.a3:
+                    _searchType = 3;
+                    break;
+                default:
+                    _searchType = 0;
+            }
+
             RequestBody token = RequestBody.create(Constants.TEXT, Constants.Token);
             RequestBody htID = RequestBody.create(Constants.TEXT, String.valueOf(Constants.HeThongID));
             RequestBody nccID = RequestBody.create(Constants.TEXT, String.valueOf(Constants.NhaCungCapID));
