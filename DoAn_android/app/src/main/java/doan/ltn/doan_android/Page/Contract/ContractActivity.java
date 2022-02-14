@@ -26,11 +26,10 @@ import doan.ltn.doan_android.Adapter.ContractAdapter;
 import doan.ltn.doan_android.Interface.APIServices;
 import doan.ltn.doan_android.Interface.ItemClickListener;
 import doan.ltn.doan_android.Object.Contract;
-import doan.ltn.doan_android.Object.ResultAPI.Model.ModelHopDong_ett;
+import doan.ltn.doan_android.Object.ResultAPI.Model.ModelHopDong;
 import doan.ltn.doan_android.Object.ResultAPI.ResultListHopDong;
 import doan.ltn.doan_android.R;
 import doan.ltn.doan_android.Shared.Constants;
-import okhttp3.Request;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -80,7 +79,7 @@ public class ContractActivity extends AppCompatActivity {
             //radioGroup.check(R.id.a1);
             rg_Status = (RadioGroup) findViewById(R.id.rg_Status);
             spinner= (Spinner) findViewById(R.id.textinput);
-            spinerAdapter=ArrayAdapter.createFromResource(ContractActivity.this,R.array.sapxep,R.layout.support_simple_spinner_dropdown_item);
+            spinerAdapter=ArrayAdapter.createFromResource(ContractActivity.this,R.array.sapxep,R.layout.dropdown_item);
             spinerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
             spinner.setAdapter(spinerAdapter);
             list= new ArrayList<>();
@@ -226,9 +225,9 @@ public class ContractActivity extends AppCompatActivity {
                     try{
                         list.clear();
                         ResultListHopDong rs = response.body();
-                        List<ModelHopDong_ett> listHD = rs.getDataField();
+                        List<ModelHopDong> listHD = rs.getDataField();
                         SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm dd/MM/yyyy");
-                        for(ModelHopDong_ett item : listHD){
+                        for(ModelHopDong item : listHD){
                             list.add(new Contract(item.getIdField(), item.getHoTenField(), item.getTenNCCField(), item.getHeThongIDField(), item.getNgayLapField()));
                         }
                         RefreshList();

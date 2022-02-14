@@ -2,16 +2,16 @@ package doan.ltn.doan_android.Object.ResultAPI;
 
 import java.util.List;
 
-import doan.ltn.doan_android.Object.ResultAPI.Model.ModelHopDong;
+import doan.ltn.doan_android.Object.ResultAPI.Model.ModelCTPX;
 
-public class ResultListHopDong{
-	private List<ModelHopDong> dataField;
+public class ResultListCTPX{
+	private List<ModelCTPX> dataField;
 	private int pageCountField;
 	private int recordCountField;
 	private int errCodeField;
 	private String errDesField;
 
-	public List<ModelHopDong> getDataField(){
+	public List<ModelCTPX> getDataField(){
 		return dataField;
 	}
 

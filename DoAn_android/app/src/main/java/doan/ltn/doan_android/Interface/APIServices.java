@@ -7,10 +7,24 @@ import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 
+import doan.ltn.doan_android.Object.ResultAPI.Model.ModelMatHang;
 import doan.ltn.doan_android.Object.ResultAPI.ResultBoolean;
+import doan.ltn.doan_android.Object.ResultAPI.ResultCuaHang;
 import doan.ltn.doan_android.Object.ResultAPI.ResultDashboardData;
 import doan.ltn.doan_android.Object.ResultAPI.ResultGroupID;
+import doan.ltn.doan_android.Object.ResultAPI.ResultHopDong;
+import doan.ltn.doan_android.Object.ResultAPI.ResultListCTHD;
+import doan.ltn.doan_android.Object.ResultAPI.ResultListCTPN;
+import doan.ltn.doan_android.Object.ResultAPI.ResultListCTPX;
+import doan.ltn.doan_android.Object.ResultAPI.ResultListCuaHang;
 import doan.ltn.doan_android.Object.ResultAPI.ResultListHopDong;
+import doan.ltn.doan_android.Object.ResultAPI.ResultListMatHang;
+import doan.ltn.doan_android.Object.ResultAPI.ResultListNCC;
+import doan.ltn.doan_android.Object.ResultAPI.ResultListPhieuNhap;
+import doan.ltn.doan_android.Object.ResultAPI.ResultListPhieuXuat;
+import doan.ltn.doan_android.Object.ResultAPI.ResultMatHang;
+import doan.ltn.doan_android.Object.ResultAPI.ResultNCC;
+import doan.ltn.doan_android.Object.ResultAPI.ResultPhieuXuat;
 import doan.ltn.doan_android.Object.ResultAPI.ResultString;
 import doan.ltn.doan_android.Object.ResultAPI.ResultUser;
 import okhttp3.Interceptor;
@@ -85,4 +99,150 @@ public interface APIServices {
                                                  @Part("IsDescending")RequestBody isDes,
                                                  @Part("Status")RequestBody statuss
                                                  );
+
+    @Multipart
+    @POST("api/HopDong/GetDetail")
+    Call<ResultHopDong> HopDong_GetDetail(@Part("Token")RequestBody token,
+                                          @Part("ID")RequestBody id);
+
+    @Multipart
+    @POST("api/HopDong/GetProgress")
+    Call<ResultHopDong> HopDong_GetProgress(@Part("Token")RequestBody token,
+                                            @Part("ID")RequestBody id);
+
+    @Multipart
+    @POST("api/HopDong/GetListCTHD")
+    Call<ResultListCTHD> HopDong_GetListCTHD(@Part("Token")RequestBody token,
+                                             @Part("ID")RequestBody id);
+
+    //Phieu nhap
+    @Multipart
+    @POST("api/HopDong/GetListPN")
+    Call<ResultListPhieuNhap> PhieuNhap_GetListPhieuNhap(@Part("Token")RequestBody token,
+                                                      @Part("ID")RequestBody id);
+
+    @Multipart
+    @POST("api/HopDong/GetListCTPN")
+    Call<ResultListCTPN> PhieuNhap_GetListCTPN(@Part("Token")RequestBody token,
+                                               @Part("ID")RequestBody id);
+    //HeThong
+    @Multipart
+    @POST("api/NhaCungCap/SeachPaging")
+    Call<ResultListNCC> NhaCungCap_SearchPaging(@Part("Token")RequestBody token,
+                                                @Part("HeThongID")RequestBody htID,
+                                                @Part("StartTime")RequestBody sTime,
+                                                @Part("EndTime")RequestBody eTime,
+                                                @Part("SearchValue")RequestBody keyword,
+                                                @Part("SearchType")RequestBody searchType,
+                                                @Part("CurPage")RequestBody curPage,
+                                                @Part("PageSize")RequestBody pageSize,
+                                                @Part("OrderBy")RequestBody orderBy,
+                                                @Part("IsDescending")RequestBody isDes
+                                                );
+
+    @Multipart
+    @POST("api/NhaCungCap/GetDetail")
+    Call<ResultNCC> NhaCungCap_GetDetail(@Part("Token")RequestBody token,
+                                         @Part("ID")RequestBody id);
+
+    //MatHang
+    @Multipart
+    @POST("api/MatHang/SearchPagingNCC")
+    Call<ResultListMatHang> MatHang_SearchPagingNCC(@Part("Token")RequestBody token,
+                                                    @Part("NhaCungCapID")RequestBody nccID,
+                                                    @Part("StartTime")RequestBody sTime,
+                                                    @Part("EndTime")RequestBody eTime,
+                                                    @Part("SearchValue")RequestBody keyword,
+                                                    @Part("SearchType")RequestBody searchType,
+                                                    @Part("CurPage")RequestBody curPage,
+                                                    @Part("PageSize")RequestBody pageSize,
+                                                    @Part("OrderBy")RequestBody orderBy,
+                                                    @Part("IsDescending")RequestBody isDes);
+
+    @Multipart
+    @POST("api/MatHang/SearchPagingHT")
+    Call<ResultListMatHang> MatHang_SearchPagingHT(@Part("Token")RequestBody token,
+                                                    @Part("HeThongID")RequestBody htID,
+                                                    @Part("StartTime")RequestBody sTime,
+                                                    @Part("EndTime")RequestBody eTime,
+                                                    @Part("SearchValue")RequestBody keyword,
+                                                    @Part("SearchType")RequestBody searchType,
+                                                    @Part("CurPage")RequestBody curPage,
+                                                    @Part("PageSize")RequestBody pageSize,
+                                                    @Part("OrderBy")RequestBody orderBy,
+                                                    @Part("IsDescending")RequestBody isDes);
+
+    @Multipart
+    @POST("api/MatHang/SearchPagingHD")
+    Call<ResultListMatHang> MatHang_SearchPagingHD(@Part("Token")RequestBody token,
+                                                    @Part("HopDongID")RequestBody hdID,
+                                                    @Part("StartTime")RequestBody sTime,
+                                                    @Part("EndTime")RequestBody eTime,
+                                                    @Part("SearchValue")RequestBody keyword,
+                                                    @Part("SearchType")RequestBody searchType,
+                                                    @Part("CurPage")RequestBody curPage,
+                                                    @Part("PageSize")RequestBody pageSize,
+                                                    @Part("OrderBy")RequestBody orderBy,
+                                                    @Part("IsDescending")RequestBody isDes);
+
+    @Multipart
+    @POST("api/MatHang/GetDetail")
+    Call<ResultMatHang> MatHang_GetDetail(@Part("Token")RequestBody token,
+                                          @Part("ID")RequestBody id);
+
+    //CuaHang
+    @Multipart
+    @POST("api/CuaHang/SearchPaging")
+    Call<ResultListCuaHang> CuaHang_SearchPaging(@Part("Token")RequestBody token,
+                                                 @Part("HeThongID")RequestBody htID,
+                                                 @Part("StartTime")RequestBody sTime,
+                                                 @Part("EndTime")RequestBody eTime,
+                                                 @Part("SearchValue")RequestBody keyword,
+                                                 @Part("SearchType")RequestBody searchType,
+                                                 @Part("CurPage")RequestBody curPage,
+                                                 @Part("PageSize")RequestBody pageSize,
+                                                 @Part("OrderBy")RequestBody orderBy,
+                                                 @Part("IsDescending")RequestBody isDes
+                                                 );
+
+    @Multipart
+    @POST("api/CuaHang/GetDetail")
+    Call<ResultCuaHang> CuaHang_GetDetail(@Part("Token")RequestBody token,
+                                          @Part("ID")RequestBody id);
+
+    //Phieu xuat
+    @Multipart
+    @POST("api/PhieuXuat/SearchPaging")
+    Call<ResultListPhieuXuat> PhieuXuat_SearchPaging(@Part("Token")RequestBody token,
+                                                     @Part("HeThongID")RequestBody htID,
+                                                     @Part("CuaHangID")RequestBody chID,
+                                                     @Part("StartTime")RequestBody sTime,
+                                                     @Part("EndTime")RequestBody eTime,
+                                                     @Part("SearchValue")RequestBody keyword,
+                                                     @Part("SearchType")RequestBody searchType,
+                                                     @Part("CurPage")RequestBody curPage,
+                                                     @Part("PageSize")RequestBody pageSize,
+                                                     @Part("OrderBy")RequestBody orderBy,
+                                                     @Part("IsDescending")RequestBody isDes
+                                                );
+
+    @Multipart
+    @POST("api/PhieuXuat/GetDetail")
+    Call<ResultPhieuXuat> PhieuXuat_GetDetail(@Part("Token")RequestBody token,
+                                              @Part("ID")RequestBody id);
+
+    @Multipart
+    @POST("api/PhieuXuat/PheDuyet")
+    Call<ResultBoolean> PhieuXuat_PheDuyet(@Part("Token")RequestBody token,
+                                           @Part("ID")RequestBody id);
+
+    @Multipart
+    @POST("api/PhieuXuat/HoanThanh")
+    Call<ResultBoolean> PhieuXuat_HoanThanh(@Part("Token")RequestBody token,
+                                            @Part("ID")RequestBody id);
+
+    @Multipart
+    @POST("api/PhieuXuat/GetListCTPX")
+    Call<ResultListCTPX> PhieuXuat_GetListCTPX(@Part("Token")RequestBody token,
+                                               @Part("ID")RequestBody id);
 }
