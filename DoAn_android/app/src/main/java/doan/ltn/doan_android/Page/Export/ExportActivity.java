@@ -40,7 +40,7 @@ public class ExportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contract);
 
-        getSupportActionBar().setTitle(R.string.ExportTitle);
+        getSupportActionBar().setTitle("Phiếu Xuất");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 

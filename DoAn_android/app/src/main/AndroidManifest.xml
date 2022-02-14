@@ -12,21 +12,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DoAn_android">
-        <activity android:name=".Page.ContractActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+        <activity android:name=".Page.Contract.ContractActivity"
+          >
     </activity>
-        <activity android:name=".Page.StoreActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+        <activity android:name=".Page.Store.StoreActivity"
+          >
         </activity>
-        <activity android:name=".Page.ExportActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+        <activity android:name=".Page.Export.ExportActivity"
+           >
         </activity>
-        <activity android:name=".Page.ImportActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+        <activity android:name=".Page.Import.ImportActivity"
+         >
 
         </activity>
-        <activity android:name=".Page.ProviderAtcivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+        <activity android:name=".Page.Provider.ProviderAtcivity"
+            >
         </activity>
         <activity
             android:name=".MainActivity"
