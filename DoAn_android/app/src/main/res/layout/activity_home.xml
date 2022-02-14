@@ -11,37 +11,80 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-       >
+        app:layout_constraintStart_toStartOf="parent">
 
-        <android.support.v7.widget.LinearLayoutCompat
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:background="@drawable/bg_home_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/TenNguoiDung"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_25dp"
+            android:layout_marginTop="@dimen/marginTitleMain"
+            android:layout_marginEnd="@dimen/marginTitleMain"
+            android:textSize="@dimen/text_sizeTitleMain"
+            android:text="Lưu Văn Lợi"
+            android:textColor="@color/titleHomeColor"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-thin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/bg_home_1"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/TenTaiKhoan"
+            android:layout_width="0dp"
+            android:textColor="@color/titleHomeColor"
+
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTitleMain1"
+            android:textSize="@dimen/text_sizeTitleMain1"
+            android:text="Loi4a"
+            android:layout_marginStart="@dimen/marginTitleMain"
+            app:layout_constraintStart_toStartOf="@id/TenNguoiDung"
+            app:layout_constraintTop_toBottomOf="@id/TenNguoiDung"
+            app:layout_constraintEnd_toEndOf="@+id/TenNguoiDung" />
+
+        <TextView
+            android:id="@+id/ChucVu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTitleMain1"
+            android:textSize="@dimen/text_sizeTitleMain2"
+            android:textColor="@color/titleHomeColor"
+            android:layout_marginStart="@dimen/marginTitleMain"
+            android:text="d\Dọn nhà vệ sinh"
+            app:layout_constraintStart_toStartOf="@id/TenNguoiDung"
+            app:layout_constraintEnd_toEndOf="@id/TenNguoiDung"
+            app:layout_constraintTop_toBottomOf="@id/TenTaiKhoan"
             />
+
         <android.support.constraint.ConstraintLayout
             android:id="@+id/btn_frame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
             android:layout_marginStart="@dimen/margin_25dp"
+            android:layout_marginTop="100dp"
             android:layout_marginEnd="@dimen/margin_25dp"
             android:background="@drawable/bg_home_2"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            >
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/list"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:layout_margin="20dp"
-                android:paddingBottom="@dimen/item_margin"
                 context=".Fragment.Home.HomeFragment"
                 listitem="@layout/item_button"
-                />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:paddingBottom="@dimen/item_margin" />
         </android.support.constraint.ConstraintLayout>
 
         <android.support.v7.widget.RecyclerView

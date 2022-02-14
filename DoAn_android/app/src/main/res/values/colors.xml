@@ -17,6 +17,8 @@
     <color name="black_overlay">#66000000</color>
     <color name="shadow_gray">#66E3DFE6</color>
     <color name="gray_100">#E7E6E9</color>
+    <color name="purple_btn">#C57CD3</color>
+    <color name="titleHomeColor">#FFFFFF</color>
 
 
 </resources>

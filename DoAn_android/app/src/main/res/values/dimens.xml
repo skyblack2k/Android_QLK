@@ -31,5 +31,15 @@
     <dimen name="PFPadding">10dp</dimen>
     <dimen name="dropdown_Item_padding">7dp</dimen>
     <dimen name="Contract_Padding">10dp</dimen>
+    <dimen name="marginTitleMain">10dp</dimen>
+    <dimen name="text_sizeTitleMain">20sp</dimen>
+    <dimen name="marginTitleMain1">5dp</dimen>
+    <dimen name="text_sizeTitleMain1">15sp</dimen>
+    <dimen name="text_sizeTitleMain2">10sp</dimen>
+    <dimen name="paddingSetting">25dp</dimen>
+    <dimen name="radiusSetting">20dp</dimen>
+    <dimen name="marginCardSetting">20dp</dimen>
+    <dimen name="paddingTextSetting">10dp</dimen>
+    <dimen name="radiusSettingBtn">5dp</dimen>
 
 </resources>

@@ -35,6 +35,7 @@
     <string name="SortBy">Sắp xếp</string>
     <string name="statusTitle">Trạng thái</string>
     <string name="Role">Vai trò</string>
+    <string name="settingBtn1">Chế độ tối</string>
     <string-array name="sapxep">
         <item>Tăng dần</item>
         <item>Giảm dần</item>
