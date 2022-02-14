@@ -23,13 +23,16 @@
     <string name="mahd">Mã HĐ</string>
     <string name="ncc">Nhà cung cấp</string>
     <string name="a3">Người lập</string>
-    <string name="searchby">Tìm theo: </string>
+    <string name="searchby">Tìm theo</string>
     <string name="mahd1">Mã HĐ:</string>
     <string name="ContractTitle">Hợp đồng</string>
     <string name="HT">Hoàn thành</string>
     <string name="CHT">Chưa hoàn thành</string>
     <string name="ExportTitle">PHIẾU XUẤT</string>
     <string name="MaonItem">Mã:</string>
+    <string name="MaSP">Mã SP</string>
+    <string name="TenSP">Tên SP</string>
+    <string name="SortBy">Sắp xếp</string>
     <string-array name="sapxep">
         <item>Tăng dần</item>
         <item>Giảm dần</item>
