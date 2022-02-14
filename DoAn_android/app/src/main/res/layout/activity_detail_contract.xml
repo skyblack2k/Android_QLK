@@ -31,14 +31,14 @@
                 android:layout_height="match_parent"
                 android:paddingBottom="@dimen/detail_fieldmargin">
 
-                <android.support.design.widget.FloatingActionButton
+                <Button
                     android:id="@+id/btn_ChiTiet"
+                    android:background="@drawable/bg_button"
                     android:layout_width="wrap_content"
+                    android:text="Chi tiết"
+                    android:textColor="@color/white"
                     android:layout_height="wrap_content"
-                    app:rippleColor="@color/blueUi_2"
-                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"
-                    android:outlineSpotShadowColor="@color/blueUi_2"
-                    android:outlineAmbientShadowColor="@color/blueUi_2"
+                    android:layout_marginEnd="@dimen/detail_fieldmargin"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
                 <TextView

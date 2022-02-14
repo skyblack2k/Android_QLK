@@ -23,7 +23,7 @@
     <dimen name="margin_10">10dp</dimen>
     <dimen name="text_size_20sp">20sp</dimen>
     <dimen name="detail_cardround">20dp</dimen>
-    <dimen name="detail_textsize">12sp</dimen>
+    <dimen name="detail_textsize">14sp</dimen>
     <dimen name="detail_fieldmargin">20dp</dimen>
     <dimen name="detail_fstartmargin">10dp</dimen>
     <dimen name="ProductFragment_padding">10dp</dimen>
@@ -45,5 +45,6 @@
     <dimen name="text_size_TextboxSetting">16sp</dimen>
     <dimen name="text_size_TextboxSetting1">14sp</dimen>
     <dimen name="marginItem">5dp</dimen>
+    <dimen name="marginTitleMain3">40dp</dimen>
 
 </resources>
