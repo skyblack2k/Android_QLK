@@ -8,6 +8,9 @@ import com.google.gson.GsonBuilder;
 import java.io.IOException;
 
 import doan.ltn.doan_android.Object.ResultAPI.ResultBoolean;
+import doan.ltn.doan_android.Object.ResultAPI.ResultDashboardData;
+import doan.ltn.doan_android.Object.ResultAPI.ResultGroupID;
+import doan.ltn.doan_android.Object.ResultAPI.ResultListHopDong;
 import doan.ltn.doan_android.Object.ResultAPI.ResultString;
 import doan.ltn.doan_android.Object.ResultAPI.ResultUser;
 import okhttp3.Interceptor;
@@ -37,18 +40,49 @@ public interface APIServices {
             .create(APIServices.class);
 
     //Call API
+    @Multipart
+    @POST("api/TaiKhoan/GetDashboardData")
+    Call<ResultDashboardData> GetDashBoardData(@Part("Token")RequestBody token);
+
     //User
     @Multipart
     @POST("api/TaiKhoan/Login")
-    Call<ResultString> UserLogin(@Part("UserName")RequestBody userName,
+    Call<ResultString> User_Login(@Part("UserName")RequestBody userName,
                              @Part("Password")RequestBody password);
 
     @Multipart
     @POST("api/TaiKhoan/CheckLogin")
-    Call<ResultBoolean> UserCheckLogin(@Part("Token")RequestBody token);
+    Call<ResultBoolean> User_CheckLogin(@Part("Token")RequestBody token);
 
     @Multipart
     @POST("api/TaiKhoan/GetUser")
-    Call<ResultUser> UserGetUser(@Part("Token")RequestBody token);
+    Call<ResultUser> User_GetUser(@Part("Token")RequestBody token);
 
+    @Multipart
+    @POST("api/TaiKhoan/GetGroupID")
+    Call<ResultGroupID> User_GetGroupID(@Part("Token")RequestBody token);
+
+    //He thong
+    @Multipart
+    @POST("api/HeThong/GetDetail")
+    Call<ResultUser> HeThong_GetDetail(@Part("Token")RequestBody token,
+                                      @Part("ID")RequestBody id);
+
+
+    //HopDong
+    @Multipart
+    @POST("api/HopDong/SearchPaging")
+    Call<ResultListHopDong> HopDong_SearchPaging(@Part("Token")RequestBody token,
+                                                 @Part("HeThongID")RequestBody htID,
+                                                 @Part("NhaCungCapID")RequestBody nccID,
+                                                 @Part("StartTime")RequestBody sTime,
+                                                 @Part("EndTime")RequestBody eTime,
+                                                 @Part("SearchValue")RequestBody keyword,
+                                                 @Part("SearchType")RequestBody searchType,
+                                                 @Part("CurPage")RequestBody curPage,
+                                                 @Part("PageSize")RequestBody pageSize,
+                                                 @Part("OrderBy")RequestBody orderBy,
+                                                 @Part("IsDescending")RequestBody isDes,
+                                                 @Part("Status")RequestBody statuss
+                                                 );
 }

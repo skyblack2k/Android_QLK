@@ -42,25 +42,25 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
     public void getID()
     {
-
         try
         {
-
             btn_signup = (TextView) findViewById(R.id.btn_signup);
             Login = (Button) findViewById(R.id.login);
             txt_UserName= findViewById(R.id.username);
             txt_Password=findViewById(R.id.password);
 
-            txt_UserName.setText("admin");
+            txt_UserName.setText("quanly_1");
             txt_Password.setText("matkhau");
         }
         catch(Exception exception)
-        {}
-
-
+        {
+            //
+        }
     }
+
     public  void  getEvents()
     {
         btn_signup.setOnClickListener(v -> {
@@ -71,7 +71,6 @@ public class LoginActivity extends AppCompatActivity {
             }
             catch (Exception exception)
             {}
-
         });
 
         Login.setOnClickListener(v ->
@@ -82,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
             RequestBody rqUserName = RequestBody.create(MediaType.parse("text/plain"), userName);
             RequestBody rqPassword = RequestBody.create(MediaType.parse("text/plain"), password);
 
-            APIServices.apiservices.UserLogin(rqUserName, rqPassword).enqueue(new Callback<ResultString>() {
+            APIServices.apiservices.User_Login(rqUserName, rqPassword).enqueue(new Callback<ResultString>() {
                 @Override
                 public void onResponse(Call<ResultString> call, Response<ResultString> response) {
                     SharedFunction.HideProcessBar();
@@ -112,5 +111,4 @@ public class LoginActivity extends AppCompatActivity {
             });
         });
     }
-
 }

@@ -22,5 +22,4 @@ public class SharedFunction {
     public static void HideProcessBar(){
         processBar.end();
     }
-
 }

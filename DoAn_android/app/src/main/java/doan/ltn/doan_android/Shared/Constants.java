@@ -8,6 +8,9 @@ public class Constants {
     public static String Name;
     public static int RoleID;
     public static String RoleName;
+    public static int HeThongID;
+    public static int CuaHangID;
+    public static int NhaCungCapID;
     public static boolean IsLogin = false;
 
     //Content type

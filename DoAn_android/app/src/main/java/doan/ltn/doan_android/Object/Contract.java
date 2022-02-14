@@ -8,6 +8,9 @@ public class Contract {
     private String NgayLap;
     private  String NgayHT;
 
+//    public Contract(){
+//        //
+//    }
     public Contract(int maHD, String nguoiLap, String NCC, int heThong, String ngayLap) {
         MaHD = maHD;
         NguoiLap = nguoiLap;

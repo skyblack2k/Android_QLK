@@ -15,6 +15,7 @@ import doan.ltn.doan_android.Fragment.Setting.SettingFragment;
 import doan.ltn.doan_android.Fragment.User.UserFagment;
 import doan.ltn.doan_android.Interface.APIServices;
 import doan.ltn.doan_android.Object.ResultAPI.ResultBoolean;
+import doan.ltn.doan_android.Object.ResultAPI.ResultGroupID;
 import doan.ltn.doan_android.Object.ResultAPI.ResultString;
 import doan.ltn.doan_android.Object.ResultAPI.ResultUser;
 import doan.ltn.doan_android.Shared.Constants;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         try
         {
             RequestBody token = RequestBody.create(Constants.TEXT, Constants.Token);
-            APIServices.apiservices.UserCheckLogin(token).enqueue(new Callback<ResultBoolean>() {
+            APIServices.apiservices.User_CheckLogin(token).enqueue(new Callback<ResultBoolean>() {
                 @Override
                 public void onResponse(Call<ResultBoolean> call, Response<ResultBoolean> response) {
                     ResultBoolean rs = response.body();
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                                 else{
                                     //Get user info
                                     RequestBody token = RequestBody.create(Constants.TEXT, Constants.Token);
-                                    APIServices.apiservices.UserGetUser(token).enqueue(new Callback<ResultUser>() {
+                                    APIServices.apiservices.User_GetUser(token).enqueue(new Callback<ResultUser>() {
                                         @Override
                                         public void onResponse(Call<ResultUser> call, Response<ResultUser> response) {
                                             ResultUser rs = response.body();
@@ -66,17 +67,44 @@ public class MainActivity extends AppCompatActivity {
                                                         Constants.RoleName = rs.getDataField().getPhanQuyenField();
                                                     }
                                                     else{
-                                                        Toast.makeText(MainActivity.this, "Null reponse! " , Toast.LENGTH_LONG).show();
+                                                        //
                                                     }
                                             }
                                             else{
-                                                Toast.makeText(MainActivity.this, "Response error: " + response.code() + " " + response.message(), Toast.LENGTH_LONG).show();
+                                                //
                                             }
                                         }
 
                                         @Override
                                         public void onFailure(Call<ResultUser> call, Throwable t) {
-                                            Toast.makeText(MainActivity.this, "Fail call: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                                            //
+                                        }
+                                    });
+
+                                    //Get group id
+                                    APIServices.apiservices.User_GetGroupID(token).enqueue(new Callback<ResultGroupID>() {
+                                        @Override
+                                        public void onResponse(Call<ResultGroupID> call, Response<ResultGroupID> response) {
+                                            ResultGroupID rs = response.body();
+                                            if(response.isSuccessful()){
+                                                if(rs != null)
+                                                    if(rs.getErrCodeField() == 2){
+                                                        Constants.HeThongID = rs.getDataField().getHeThongIDField();
+                                                        Constants.CuaHangID = rs.getDataField().getCuaHangIDField();
+                                                        Constants.NhaCungCapID = rs.getDataField().getNhaCungCapIDField();
+                                                    }
+                                                    else{
+
+                                                    }
+                                            }
+                                            else{
+                                                //
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<ResultGroupID> call, Throwable t) {
+                                            //
                                         }
                                     });
                                 }

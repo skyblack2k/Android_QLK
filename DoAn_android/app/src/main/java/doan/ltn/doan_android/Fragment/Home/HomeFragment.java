@@ -9,14 +9,22 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import java.lang.reflect.Executable;
 import java.util.ArrayList;
+
+import javax.xml.transform.Result;
 
 import doan.ltn.doan_android.Adapter.HomeButtomAdapter;
 import doan.ltn.doan_android.Adapter.HomeStatusAdapter;
+import doan.ltn.doan_android.Interface.APIServices;
 import doan.ltn.doan_android.Interface.ItemButtomOnClick;
 import doan.ltn.doan_android.Interface.ItemClickListener;
 import doan.ltn.doan_android.Object.ButtomItem;
+import doan.ltn.doan_android.Object.ResultAPI.Model.ModelDashboardData;
+import doan.ltn.doan_android.Object.ResultAPI.ResultDashboardData;
+import doan.ltn.doan_android.Object.ResultAPI.ResultGroupID;
 import doan.ltn.doan_android.Object.Status;
 import doan.ltn.doan_android.Page.Contract.ContractActivity;
 import doan.ltn.doan_android.Page.Export.ExportActivity;
@@ -24,6 +32,11 @@ import doan.ltn.doan_android.Page.Import.ImportActivity;
 import doan.ltn.doan_android.Page.Provider.ProviderAtcivity;
 import doan.ltn.doan_android.Page.Store.StoreActivity;
 import doan.ltn.doan_android.R;
+import doan.ltn.doan_android.Shared.Constants;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class HomeFragment extends Fragment {
@@ -99,21 +112,37 @@ public class HomeFragment extends Fragment {
         });
         recyclerView.setAdapter(adapter);
 
-        listStatus.add(new Status(1,"HĐ chưa HT",10));
-        listStatus.add(new Status(2,"Phiếu xuất",122));
-        listStatus.add(new Status(3,"Phiếu nhập",103));
-        listStatus.add(new Status(4,"HĐ đã HT",103));
-        listStatus.add(new Status(5,"Phiếu xuất HT",20));
-        listStatus.add(new Status(6,"Phiếu nhập chưa HT",230));
-        statusAdapter= new HomeStatusAdapter(listStatus, new ItemClickListener() {
+        //Get dashboard data
+        RequestBody token = RequestBody.create(Constants.TEXT, Constants.Token);
+        APIServices.apiservices.GetDashBoardData(token).enqueue(new Callback<ResultDashboardData>() {
             @Override
-            public void onItemClickListener(int i) {
+            public void onResponse(Call<ResultDashboardData> call, Response<ResultDashboardData> response) {
+                ResultDashboardData rs = response.body();
+                if(response.isSuccessful()){
+                    if(rs != null)
+                        if(rs.getErrCodeField() == 2){
+                            ModelDashboardData dashboardData = rs.getDataField();
+                            SetStatus(dashboardData);
+                            return;
+                        }
+                        else{
+                            //
+                        }
+                }
+                else{
+                    //
+                }
+                SetStatus(null);
+            }
 
+            @Override
+            public void onFailure(Call<ResultDashboardData> call, Throwable t) {
+                SetStatus(null);
             }
         });
-        statusView.setAdapter(statusAdapter);
-    }
 
+
+    }
     public void getID(View view)
    {
        bLayout= (ConstraintLayout) view.findViewById(R.id.btn_frame);
@@ -123,6 +152,36 @@ public class HomeFragment extends Fragment {
        statusView.setLayoutManager(new GridLayoutManager(view.getContext(),2));
        list=new ArrayList<>();
        listStatus=new ArrayList<>();
+   }
 
+   private void SetStatus(ModelDashboardData dashboardData){
+        try{
+            listStatus.add(new Status(11,"Hợp đồng", dashboardData.getTongSoHDField()));
+            listStatus.add(new Status(21,"Yêu cầu xuất hàng", dashboardData.getTongSoYCField()));
+            listStatus.add(new Status(12,"Hợp đồng chưa HT", dashboardData.getTongSoHDChoField()));
+            listStatus.add(new Status(22,"YCXH đã tạo",dashboardData.getTongSoYCChoField()));
+            listStatus.add(new Status(13,"Hợp đồng đã HT",dashboardData.getTongSoHDHoanThanhField()));
+            listStatus.add(new Status(23,"YCXH đã phê duyệt",dashboardData.getTongSoYCPheDuyetField()));
+            listStatus.add(new Status(14,"Phiếu nhập",0));
+            listStatus.add(new Status(24,"YCXH đã hoàn thành",dashboardData.getTongSoYCHoanThanhField()));
+        }
+        catch (Exception ex){
+            listStatus.add(new Status(11,"Hợp đồng", 0));
+            listStatus.add(new Status(21,"Yêu cầu xuất hàng", 0));
+            listStatus.add(new Status(12,"Hợp đồng chưa HT", 0));
+            listStatus.add(new Status(22,"YCXH đã tạo", 0));
+            listStatus.add(new Status(13,"Hợp đồng đã HT", 0));
+            listStatus.add(new Status(23,"YCXH đã phê duyệt", 0));
+            listStatus.add(new Status(14,"Phiếu nhập",0));
+            listStatus.add(new Status(24,"YCXH đã hoàn thành", 0));
+        }
+
+       statusAdapter= new HomeStatusAdapter(listStatus, new ItemClickListener() {
+           @Override
+           public void onItemClickListener(int i) {
+
+           }
+       });
+       statusView.setAdapter(statusAdapter);
    }
 }
