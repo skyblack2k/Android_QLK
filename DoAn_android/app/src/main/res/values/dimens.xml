@@ -41,5 +41,8 @@
     <dimen name="marginCardSetting">20dp</dimen>
     <dimen name="paddingTextSetting">10dp</dimen>
     <dimen name="radiusSettingBtn">5dp</dimen>
+    <dimen name="marginTextboxSetting">10dp</dimen>
+    <dimen name="text_size_TextboxSetting">16sp</dimen>
+    <dimen name="text_size_TextboxSetting1">14sp</dimen>
 
 </resources>
