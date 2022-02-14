@@ -300,6 +300,7 @@
             android:outlineSpotShadowColor="@color/blueUi"
             app:cardBackgroundColor="@color/blueUi_2"
             android:layout_marginTop="@dimen/marginCardSetting"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             android:background="@drawable/bg_pp"
             app:layout_constraintStart_toStartOf="parent"

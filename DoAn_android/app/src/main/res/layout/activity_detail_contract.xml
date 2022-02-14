@@ -209,12 +209,13 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="600dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_10"
-            app:cardCornerRadius="@dimen/detail_cardround"
-            app:cardBackgroundColor="@color/blueUi_2"
             android:outlineAmbientShadowColor="@color/blueUi"
             android:outlineSpotShadowColor="@color/blueUi"
+            app:cardBackgroundColor="@color/blueUi_2"
+            app:cardCornerRadius="@dimen/contract_radius"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/titleforlist">
 
