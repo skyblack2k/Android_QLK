@@ -17,12 +17,24 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import doan.ltn.doan_android.Adapter.ContractAdapter;
+import doan.ltn.doan_android.Interface.APIServices;
 import doan.ltn.doan_android.Interface.ItemClickListener;
 import doan.ltn.doan_android.Object.Contract;
+import doan.ltn.doan_android.Object.ResultAPI.Model.ModelHopDong_ett;
+import doan.ltn.doan_android.Object.ResultAPI.ResultListHopDong;
 import doan.ltn.doan_android.R;
+import doan.ltn.doan_android.Shared.Constants;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ContractActivity extends AppCompatActivity {
     ContractAdapter adapter;
@@ -33,6 +45,18 @@ public class ContractActivity extends AppCompatActivity {
     RadioGroup radioGroup;
     private RadioButton a1,a2,a3,a4;
     ArrayAdapter<CharSequence>  spinerAdapter;
+
+    //Param for search
+    Date _startTime;
+    Date _endTime;
+    String _searchValue;
+    int _searchType;
+    int _curPage;
+    int _pageSize;
+    int _orderBy;
+    boolean _isDes;
+    int _status;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +64,6 @@ public class ContractActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Hợp Đồng");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
 
         getID();
         getData();
@@ -68,45 +91,39 @@ public class ContractActivity extends AppCompatActivity {
         }
 
     }
-    public  void getData()
+    public void getData()
     {
+        //Initialize
+        _startTime = null;
+        _endTime = null;
+        _searchValue = "";
+        _searchType = 0;
+        _curPage = 1;
+        _pageSize = 10;
+        _orderBy = 0;
+        _isDes = false;
+        _status = -1;
+        //Show list
+        list = new ArrayList<>();
+        recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
+        adapter = new ContractAdapter(list, new ItemClickListener() {
+            @Override
+            public void onItemClickListener(int i) {
 
-
-        try {
-            for (int i=0; i<10;i++)
-            {
-                list.add(new Contract(i,"Nguyễn Văn ","Nhà cung cấp số"+String.valueOf(i),i,"20/10/2000") );
+                Intent intent =new Intent(ContractActivity.this,DetailContractActivity.class);
+                startActivity(intent);
             }
-
-            recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
-            adapter = new ContractAdapter(list, new ItemClickListener() {
-                @Override
-                public void onItemClickListener(int i) {
-
-                    Intent intent =new Intent(ContractActivity.this,DetailContractActivity.class);
-                    startActivity(intent);
-                }
-            });
-            recyclerView.setAdapter(adapter);
-        }
-        catch (Exception exception)
-        {
-
-        }
-
-
-
+        });
+        recyclerView.setAdapter(adapter);
     }
 
-
-    public  void getEvents()
+    public void getEvents()
     {
-
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                Toast.makeText(ContractActivity.this, spinerAdapter.getItem(position).toString(),Toast.LENGTH_LONG).show();
+                _isDes = position == 0? false: true;
+                Search();
             }
 
             @Override
@@ -114,7 +131,6 @@ public class ContractActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     @Override
@@ -128,16 +144,78 @@ public class ContractActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 // xử lí tìm kiếm
+                Toast.makeText(ContractActivity.this, "Keyword: " + s, Toast.LENGTH_LONG);
+                _searchValue = s;
+                Search();
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-
+                Toast.makeText(ContractActivity.this, "Keyword: " + s, Toast.LENGTH_LONG);
                 return false;
             }
         });
         return super.onCreateOptionsMenu(menu);
     }
 
+    private void Search(){
+        try{
+            RequestBody token = RequestBody.create(Constants.TEXT, Constants.Token);
+            RequestBody htID = RequestBody.create(Constants.TEXT, String.valueOf(Constants.HeThongID));
+            RequestBody nccID = RequestBody.create(Constants.TEXT, String.valueOf(Constants.NhaCungCapID));
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String strStartTime = "", strEndTime = "";
+            if(_startTime != null){
+                strStartTime = dateFormat.format(_startTime);
+            }
+            if(_endTime != null){
+                strEndTime = dateFormat.format(_endTime);
+            }
+            RequestBody startTime = RequestBody.create(Constants.TEXT, strStartTime);
+            RequestBody endTime = RequestBody.create(Constants.TEXT, strEndTime);
+
+            RequestBody searchValue = RequestBody.create(Constants.TEXT, _searchValue);
+            RequestBody searchType = RequestBody.create(Constants.TEXT, String.valueOf(_searchType));
+            RequestBody curPage = RequestBody.create(Constants.TEXT, String.valueOf(_curPage));
+            RequestBody pageSize = RequestBody.create(Constants.TEXT, String.valueOf(_pageSize));
+            RequestBody orderBy = RequestBody.create(Constants.TEXT, String.valueOf(_orderBy));
+            RequestBody isDes = RequestBody.create(Constants.TEXT, String.valueOf(_isDes));
+            RequestBody status = RequestBody.create(Constants.TEXT, String.valueOf(_status));
+
+            APIServices.apiservices.HopDong_SearchPaging(token, htID, nccID,
+                    startTime, endTime,
+                    searchValue, searchType, curPage, pageSize, orderBy, isDes, status).enqueue(new Callback<ResultListHopDong>() {
+                @Override
+                public void onResponse(Call<ResultListHopDong> call, Response<ResultListHopDong> response) {
+                    try{
+                        list.clear();
+                        ResultListHopDong rs = response.body();
+                        List<ModelHopDong_ett> listHD = rs.getDataField();
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm dd/MM/yyyy");
+                        for(ModelHopDong_ett item : listHD){
+                            list.add(new Contract(item.getIdField(), item.getHoTenField(), item.getTenNCCField(), item.getHeThongIDField(), item.getNgayLapField()));
+                        }
+                        RefreshList();
+                    }
+                    catch (Exception ex){
+                        Toast.makeText(ContractActivity.this, "Có lỗi xảy ra trong quá trình nhận dữ liệu!", Toast.LENGTH_LONG);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResultListHopDong> call, Throwable t) {
+                    Toast.makeText(ContractActivity.this, "Có lỗi xảy ra trong quá trình gửi yêu cầu!", Toast.LENGTH_LONG);
+                }
+            });
+        }
+        catch (Exception ex){
+            Toast.makeText(ContractActivity.this, "Vui lòng kiểm tra đầu vào và thử lại!", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    void RefreshList(){
+        adapter.notifyDataSetChanged();
+    }
 }
