@@ -21,12 +21,13 @@ import doan.ltn.doan_android.R;
 public class ProductFragment extends Fragment {
 
 
-    private Spinner spinner;
-    private ArrayAdapter<CharSequence> spinerAdapter;
+    private Spinner spinnerSort, spinnerRole;
+    private ArrayAdapter<CharSequence> spinerAdapterSort, spinerAdapterRole;
     private ArrayList<Object> list;
-    private TextView a1,a2,a3,a4;
-    private  RecyclerView recyclerView;
-    private  RadioGroup radioGroup;
+    private RadioButton a1, a2, a3, a4;
+    private RecyclerView recyclerView;
+    private RadioGroup radioGroup;
+    private  TextView sortTitle;
 
 
     @Override
@@ -38,57 +39,57 @@ public class ProductFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       View view=inflater.inflate(R.layout.fragment_product, container, false);
+        View view = inflater.inflate(R.layout.fragment_product, container, false);
         getID(view);
         getData();
         getEvents();
         return view;
     }
-    public void  getID(View view)
-    {
-        try
-        {
 
-
-            a1=(RadioButton) view.findViewById(R.id.a1);
-            a2=(RadioButton) view.findViewById(R.id.a2);
-            a3=(RadioButton) view.findViewById(R.id.a3);
-            a4=(RadioButton) view.findViewById(R.id.a4);
-            a4.setVisibility(View.INVISIBLE);
-            recyclerView= (RecyclerView) view.findViewById(R.id.rec1);
-            radioGroup= (RadioGroup) view.findViewById(R.id.g1);
-            radioGroup.check(R.id.a1);
-            spinner= (Spinner) view.findViewById(R.id.textinput);
-            spinerAdapter= ArrayAdapter.createFromResource(view.getContext(),R.array.sapxep,R.layout.dropdown_item);
-            spinerAdapter.setDropDownViewResource(R.layout.dropdown_item);
-            spinner.setAdapter(spinerAdapter);
-            list= new ArrayList<>();
-        }
-        catch (Exception exception)
-        {
-
-        }
-
-    }
-    public void  getData()
-    {
-        try
-        {
-
-        }
-        catch (Exception exception)
-        {
-
-        }
-    }
-    public void getEvents()
-    {
+    public void getID(View view) {
         try {
 
+            a1 = (RadioButton) view.findViewById(R.id.a1);
+            a2 = (RadioButton) view.findViewById(R.id.a2);
+            a3 = (RadioButton) view.findViewById(R.id.a3);
+            a4 = (RadioButton) view.findViewById(R.id.a4);
+            a4.setVisibility(View.INVISIBLE);
+            sortTitle=(TextView) view.findViewById(R.id.textView);
+            recyclerView = (RecyclerView) view.findViewById(R.id.rec1);
+            radioGroup = (RadioGroup) view.findViewById(R.id.g1);
+            radioGroup.check(R.id.a1);
+            spinnerRole = (Spinner) view.findViewById(R.id.textinput2);
+            spinnerSort = (Spinner) view.findViewById(R.id.textinput);
+            spinerAdapterSort = ArrayAdapter.createFromResource(view.getContext(), R.array.sapxep, R.layout.dropdown_item);
+            spinerAdapterSort.setDropDownViewResource(R.layout.dropdown_item);
+            spinnerSort.setAdapter(spinerAdapterSort);
+//            spinerAdapterRole = ArrayAdapter.createFromResource(view.getContext(), R.array.role, R.layout.dropdown_item);
+//            spinerAdapterRole.setDropDownViewResource(R.layout.dropdown_item);
+//            spinnerRole.setAdapter(spinerAdapterRole);
+            spinnerRole.setVisibility(View.GONE);
+            sortTitle.setVisibility(View.GONE);
+
+            list = new ArrayList<>();
+        } catch (Exception exception) {
+
         }
-        catch (Exception exception)
-        {
+
+    }
+
+    public void getData() {
+        try {
+
+        } catch (Exception exception) {
 
         }
     }
+
+    public void getEvents() {
+        try {
+
+        } catch (Exception exception) {
+
+        }
+    }
+
 }

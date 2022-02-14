@@ -33,8 +33,16 @@
     <string name="MaSP">Mã SP</string>
     <string name="TenSP">Tên SP</string>
     <string name="SortBy">Sắp xếp</string>
+    <string name="statusTitle">Trạng thái</string>
+    <string name="Role">Vai trò</string>
     <string-array name="sapxep">
         <item>Tăng dần</item>
         <item>Giảm dần</item>
+    </string-array>
+    <string-array name="role">
+        <item>Quản lý</item>
+        <item>Nhân viên</item>
+        <item>Cửa hàng</item>
+        <item>Nhà cung cấp</item>
     </string-array>
 </resources>

@@ -30,5 +30,6 @@
     <dimen name="box_title_padding">8dp</dimen>
     <dimen name="PFPadding">10dp</dimen>
     <dimen name="dropdown_Item_padding">7dp</dimen>
+    <dimen name="Contract_Padding">10dp</dimen>
 
 </resources>

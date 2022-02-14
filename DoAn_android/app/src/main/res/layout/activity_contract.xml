@@ -4,151 +4,189 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/Contract_Padding"
     android:background="@drawable/bg_blue"
     tools:context=".Page.Contract.ContractActivity">
-
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardview1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_filter"
-        android:padding="@dimen/edittext_padding"
-        android:text="@string/searchby"
-        android:textColor="@color/black"
-        android:textSize="@dimen/item_button_text"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/horizontalScrollView"
+        app:cardCornerRadius="@dimen/detail_cardround"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/horizontalScrollView" />
-
-
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_filter"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <RadioGroup
-            android:id="@+id/g1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/l1"
+            android:background="@drawable/bg_pp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            android:orientation="horizontal"
+            android:paddingBottom="@dimen/margin_filter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView">
+            app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_filter"
+                android:padding="@dimen/box_title_padding"
+                android:text="@string/searchby"
+                android:background="@drawable/textbox_1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sortby_tiltle_textsize"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/horizontalScrollView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/horizontalScrollView" />
 
-            <RadioButton
-                android:id="@+id/a1"
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_filter"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <RadioGroup
+                    android:id="@+id/g1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/searchView">
+
+                    <RadioButton
+                        android:id="@+id/a1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/radiobutton"
+                        android:button="@android:color/transparent"
+                        android:padding="5dp"
+                        android:textSize="@dimen/sortby_tiltle_textsize"
+
+                        android:text="@string/mahd" />
+
+
+                    <RadioButton
+                        android:id="@+id/a2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/radiobutton"
+                        android:button="@android:color/transparent"
+                        android:padding="5dp"
+                        android:textSize="@dimen/sortby_tiltle_textsize"
+
+                        android:text="@string/ncc" />
+
+                    <RadioButton
+                        android:id="@+id/a3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/radiobutton"
+                        android:button="@android:color/transparent"
+                        android:padding="5dp"
+                        android:textSize="@dimen/sortby_tiltle_textsize"
+                        android:text="@string/a3" />
+
+                </RadioGroup>
+
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_filter"
+                android:padding="@dimen/box_title_padding"
+                android:text="@string/statusTitle"
+                android:background="@drawable/textbox_1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sortby_tiltle_textsize"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/horizontalScrollView1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/horizontalScrollView1" />
+
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:background="@drawable/radiobutton"
-                android:button="@android:color/transparent"
-                android:padding="5dp"
-                android:text="@string/mahd" />
+                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView"
+                app:layout_constraintStart_toEndOf="@+id/textView4"
+                >
 
+                <RadioGroup
+                    android:id="@+id/rg_Status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
 
-            <RadioButton
-                android:id="@+id/a2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/radiobutton"
-                android:button="@android:color/transparent"
-                android:padding="5dp"
-                android:text="@string/ncc" />
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/searchView">
 
-            <RadioButton
-                android:id="@+id/a3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/radiobutton"
-                android:button="@android:color/transparent"
-                android:padding="5dp"
-                android:text="@string/a3" />
+                    <RadioButton
+                        android:id="@+id/cb_Status_CHT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/radiobutton"
+                        android:button="@android:color/transparent"
+                        android:padding="5dp"
+                        android:textSize="@dimen/sortby_tiltle_textsize"
+                        android:text="@string/CHT" />
 
-        </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/cb_Status_HT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/radiobutton"
+                        android:button="@android:color/transparent"
+                        android:padding="5dp"
+                        android:textSize="@dimen/sortby_tiltle_textsize"
 
-    </HorizontalScrollView>
+                        android:text="@string/HT" />
+                </RadioGroup>
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_filter"
-        android:padding="@dimen/edittext_padding"
-        android:text="Trạng thái:"
-        android:textColor="@color/black"
-        android:textSize="@dimen/item_button_text"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/horizontalScrollView1"
+            </HorizontalScrollView>
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:cardCornerRadius="@dimen/detail_cardround"
+        app:cardBackgroundColor="@color/blueUi_2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/horizontalScrollView1" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textinput">
 
-
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@id/horizontalScrollView">
-
-        <RadioGroup
-            android:id="@+id/rg_Status"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rec1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:orientation="horizontal"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/recview"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView">
-
-            <RadioButton
-                android:id="@+id/cb_Status_CHT"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/radiobutton"
-                android:button="@android:color/transparent"
-                android:padding="5dp"
-                android:text="@string/CHT" />
-
-            <RadioButton
-                android:id="@+id/cb_Status_HT"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/radiobutton"
-                android:button="@android:color/transparent"
-                android:padding="5dp"
-                android:text="@string/HT" />
-        </RadioGroup>
-
-    </HorizontalScrollView>
+            app:layout_constraintTop_toBottomOf="@+id/textinput" />
+    </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.AppCompatSpinner
         android:id="@+id/textinput"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/item_button_margin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView"></android.support.v7.widget.AppCompatSpinner>
+        app:layout_constraintTop_toBottomOf="@+id/cardview1"></android.support.v7.widget.AppCompatSpinner>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rec1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="@dimen/recview"
-
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textinput" />
 
 </android.support.constraint.ConstraintLayout>
