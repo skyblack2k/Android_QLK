@@ -113,35 +113,38 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         //Get dashboard data
-        RequestBody token = RequestBody.create(Constants.TEXT, Constants.Token);
-        APIServices.apiservices.GetDashBoardData(token).enqueue(new Callback<ResultDashboardData>() {
-            @Override
-            public void onResponse(Call<ResultDashboardData> call, Response<ResultDashboardData> response) {
-                ResultDashboardData rs = response.body();
-                if(response.isSuccessful()){
-                    if(rs != null)
-                        if(rs.getErrCodeField() == 2){
-                            ModelDashboardData dashboardData = rs.getDataField();
-                            SetStatus(dashboardData);
-                            return;
-                        }
-                        else{
-                            //
-                        }
+        try{
+            RequestBody token = RequestBody.create(Constants.TEXT, Constants.Token);
+            APIServices.apiservices.GetDashBoardData(token).enqueue(new Callback<ResultDashboardData>() {
+                @Override
+                public void onResponse(Call<ResultDashboardData> call, Response<ResultDashboardData> response) {
+                    ResultDashboardData rs = response.body();
+                    if(response.isSuccessful()){
+                        if(rs != null)
+                            if(rs.getErrCodeField() == 2){
+                                ModelDashboardData dashboardData = rs.getDataField();
+                                SetStatus(dashboardData);
+                                return;
+                            }
+                            else{
+                                //
+                            }
+                    }
+                    else{
+                        //
+                    }
+                    SetStatus(null);
                 }
-                else{
-                    //
+
+                @Override
+                public void onFailure(Call<ResultDashboardData> call, Throwable t) {
+                    SetStatus(null);
                 }
-                SetStatus(null);
-            }
-
-            @Override
-            public void onFailure(Call<ResultDashboardData> call, Throwable t) {
-                SetStatus(null);
-            }
-        });
-
-
+            });
+        }
+        catch (Exception ex){
+            SetStatus(null);
+        }
     }
     public void getID(View view)
    {
