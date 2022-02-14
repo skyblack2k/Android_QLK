@@ -49,9 +49,10 @@ public class StoreActivity extends AppCompatActivity {
         a3.setText("Địa chỉ");
         a4.setText("SDT");
         HoanThanh=(CheckBox) findViewById(R.id.b1);
-        radioGroup.check(R.id.a1);
+
         recyclerView= (RecyclerView) findViewById(R.id.rec1);
         radioGroup= (RadioGroup) findViewById(R.id.g1);
+        radioGroup.check(R.id.a1);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
 
         list= new ArrayList<>();

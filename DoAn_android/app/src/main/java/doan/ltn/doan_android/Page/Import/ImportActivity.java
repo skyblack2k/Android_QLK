@@ -46,9 +46,10 @@ public class ImportActivity extends AppCompatActivity {
         a3.setText("Người lập");
         a4.setText("Người duyệt");
         HoanThanh=(CheckBox) findViewById(R.id.b1);
-        radioGroup.check(R.id.a1);
+
         recyclerView= (RecyclerView) findViewById(R.id.rec1);
         radioGroup= (RadioGroup) findViewById(R.id.g1);
+        radioGroup.check(R.id.a1);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
         listImport= new ArrayList<>();
     }

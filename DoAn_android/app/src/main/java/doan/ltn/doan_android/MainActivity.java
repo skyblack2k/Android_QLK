@@ -35,64 +35,73 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.subactivity, new HomeFragment()).commit();
 
         //CheckLogin
-        RequestBody token = RequestBody.create(Constants.TEXT, Constants.Token);
-        APIServices.apiservices.UserCheckLogin(token).enqueue(new Callback<ResultBoolean>() {
-            @Override
-            public void onResponse(Call<ResultBoolean> call, Response<ResultBoolean> response) {
-                ResultBoolean rs = response.body();
-                if(response.isSuccessful()){
-                    if(rs != null)
-                        if(rs.getErrCodeField() == 2){
-                            if(!rs.isDataField()) {
-                                //Chưa đăng nhập
-                                Toast.makeText(MainActivity.this, "Phiên đăng nhập hết hạn!", Toast.LENGTH_LONG).show();
-                                MainActivity.this.finish();
+        try
+        {
+            RequestBody token = RequestBody.create(Constants.TEXT, Constants.Token);
+            APIServices.apiservices.UserCheckLogin(token).enqueue(new Callback<ResultBoolean>() {
+                @Override
+                public void onResponse(Call<ResultBoolean> call, Response<ResultBoolean> response) {
+                    ResultBoolean rs = response.body();
+                    if(response.isSuccessful()){
+                        if(rs != null)
+                            if(rs.getErrCodeField() == 2){
+                                if(!rs.isDataField()) {
+                                    //Chưa đăng nhập
+                                    Toast.makeText(MainActivity.this, "Phiên đăng nhập hết hạn!", Toast.LENGTH_LONG).show();
+                                    MainActivity.this.finish();
+                                }
+                                else{
+                                    //Get user info
+                                    RequestBody token = RequestBody.create(Constants.TEXT, Constants.Token);
+                                    APIServices.apiservices.UserGetUser(token).enqueue(new Callback<ResultUser>() {
+                                        @Override
+                                        public void onResponse(Call<ResultUser> call, Response<ResultUser> response) {
+                                            ResultUser rs = response.body();
+                                            if(response.isSuccessful()){
+                                                if(rs != null)
+                                                    if(rs.getErrCodeField() == 2){
+                                                        Constants.UserName = rs.getDataField().getUserNameField();
+                                                        Constants.Name = rs.getDataField().getHoTenField();
+                                                        Constants.RoleID = rs.getDataField().getPhanQuyenIDField();
+                                                        Constants.RoleName = rs.getDataField().getPhanQuyenField();
+                                                    }
+                                                    else{
+                                                        Toast.makeText(MainActivity.this, "Null reponse! " , Toast.LENGTH_LONG).show();
+                                                    }
+                                            }
+                                            else{
+                                                Toast.makeText(MainActivity.this, "Response error: " + response.code() + " " + response.message(), Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<ResultUser> call, Throwable t) {
+                                            Toast.makeText(MainActivity.this, "Fail call: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                                }
                             }
                             else{
-                                //Get user info
-                                RequestBody token = RequestBody.create(Constants.TEXT, Constants.Token);
-                                APIServices.apiservices.UserGetUser(token).enqueue(new Callback<ResultUser>() {
-                                    @Override
-                                    public void onResponse(Call<ResultUser> call, Response<ResultUser> response) {
-                                        ResultUser rs = response.body();
-                                        if(response.isSuccessful()){
-                                            if(rs != null)
-                                                if(rs.getErrCodeField() == 2){
-                                                    Constants.UserName = rs.getDataField().getUserNameField();
-                                                    Constants.Name = rs.getDataField().getHoTenField();
-                                                    Constants.RoleID = rs.getDataField().getPhanQuyenIDField();
-                                                    Constants.RoleName = rs.getDataField().getPhanQuyenField();
-                                                }
-                                                else{
-                                                    Toast.makeText(MainActivity.this, "Null reponse! " , Toast.LENGTH_LONG).show();
-                                                }
-                                        }
-                                        else{
-                                            Toast.makeText(MainActivity.this, "Response error: " + response.code() + " " + response.message(), Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onFailure(Call<ResultUser> call, Throwable t) {
-                                        Toast.makeText(MainActivity.this, "Fail call: " + t.getMessage(), Toast.LENGTH_LONG).show();
-                                    }
-                                });
+                                Toast.makeText(MainActivity.this, "Null reponse! " , Toast.LENGTH_LONG).show();
                             }
-                        }
-                        else{
-                            Toast.makeText(MainActivity.this, "Null reponse! " , Toast.LENGTH_LONG).show();
-                        }
+                    }
+                    else{
+                        Toast.makeText(MainActivity.this, "Response error: " + response.code() + " " + response.message(), Toast.LENGTH_LONG).show();
+                    }
                 }
-                else{
-                    Toast.makeText(MainActivity.this, "Response error: " + response.code() + " " + response.message(), Toast.LENGTH_LONG).show();
-                }
-            }
 
-            @Override
-            public void onFailure(Call<ResultBoolean> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Fail call: " + t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<ResultBoolean> call, Throwable t) {
+                    Toast.makeText(MainActivity.this, "Fail call: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
+
+
+        }
+        catch (Exception exception)
+        {
+
+        }
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
