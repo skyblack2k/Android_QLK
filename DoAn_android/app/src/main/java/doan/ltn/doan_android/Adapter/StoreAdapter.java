@@ -11,17 +11,17 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import doan.ltn.doan_android.Interface.ItemClickListener;
-import doan.ltn.doan_android.Object.Contract;
 import doan.ltn.doan_android.Object.Import;
+import doan.ltn.doan_android.Object.Store;
 import doan.ltn.doan_android.R;
 
-public class ImportAdapter extends RecyclerView.Adapter<ImportAdapter.ViewHolder> {
+public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> {
 
-    private ArrayList<Import> listImport;
+    private ArrayList<Store> list;
     private ItemClickListener itemClickListener;
 
-    public ImportAdapter(ArrayList<Import> list, ItemClickListener itemClickListener) {
-    this.listImport=list;
+    public StoreAdapter(ArrayList<Store> list, ItemClickListener itemClickListener) {
+    this.list=list;
     this.itemClickListener=itemClickListener;
 
     }
@@ -37,12 +37,12 @@ public class ImportAdapter extends RecyclerView.Adapter<ImportAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ImportAdapter.ViewHolder viewHolder, int i) {
-        Import item=listImport.get(i);
+    public void onBindViewHolder(@NonNull StoreAdapter.ViewHolder viewHolder, int i) {
+        Store item=list.get(i);
         viewHolder.ma.setText(String.valueOf(String.valueOf(item.getID())));
-        viewHolder.name.setText(String.valueOf(item.getNguoiGiao()));
+        viewHolder.name.setText(String.valueOf(item.getTenCH()));
 
-        viewHolder.date.setText(String.valueOf(item.getNgayLap()));
+        viewHolder.date.setText(String.valueOf(item.getDiaChi()));
         viewHolder.itemView.setOnClickListener(v -> {
 
             itemClickListener.onItemClickListener(i);
@@ -51,8 +51,8 @@ public class ImportAdapter extends RecyclerView.Adapter<ImportAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        if (listImport !=null)
-        {return listImport.size();}
+        if (list !=null)
+        {return list.size();}
         return 0;
     }
 

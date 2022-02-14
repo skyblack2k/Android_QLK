@@ -11,17 +11,17 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import doan.ltn.doan_android.Interface.ItemClickListener;
-import doan.ltn.doan_android.Object.Contract;
 import doan.ltn.doan_android.Object.Import;
+import doan.ltn.doan_android.Object.Provider;
 import doan.ltn.doan_android.R;
 
-public class ImportAdapter extends RecyclerView.Adapter<ImportAdapter.ViewHolder> {
+public class ProviderAdapter extends RecyclerView.Adapter<ProviderAdapter.ViewHolder> {
 
-    private ArrayList<Import> listImport;
+    private ArrayList<Provider> lisProvider;
     private ItemClickListener itemClickListener;
 
-    public ImportAdapter(ArrayList<Import> list, ItemClickListener itemClickListener) {
-    this.listImport=list;
+    public ProviderAdapter(ArrayList<Provider> list, ItemClickListener itemClickListener) {
+    this.lisProvider=list;
     this.itemClickListener=itemClickListener;
 
     }
@@ -37,12 +37,12 @@ public class ImportAdapter extends RecyclerView.Adapter<ImportAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ImportAdapter.ViewHolder viewHolder, int i) {
-        Import item=listImport.get(i);
+    public void onBindViewHolder(@NonNull ProviderAdapter.ViewHolder viewHolder, int i) {
+        Provider item=lisProvider.get(i);
         viewHolder.ma.setText(String.valueOf(String.valueOf(item.getID())));
-        viewHolder.name.setText(String.valueOf(item.getNguoiGiao()));
+        viewHolder.name.setText(String.valueOf(item.getTenNCC()));
 
-        viewHolder.date.setText(String.valueOf(item.getNgayLap()));
+        viewHolder.date.setText(String.valueOf(item.getDiaChi()));
         viewHolder.itemView.setOnClickListener(v -> {
 
             itemClickListener.onItemClickListener(i);
@@ -51,8 +51,8 @@ public class ImportAdapter extends RecyclerView.Adapter<ImportAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        if (listImport !=null)
-        {return listImport.size();}
+        if (lisProvider !=null)
+        {return lisProvider.size();}
         return 0;
     }
 
