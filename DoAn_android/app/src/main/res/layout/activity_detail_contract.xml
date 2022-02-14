@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_10"
             app:cardCornerRadius="@dimen/detail_cardround"
+            app:cardBackgroundColor="@color/blueUi_2"
             android:outlineAmbientShadowColor="@color/blueUi"
             android:outlineSpotShadowColor="@color/blueUi"
             app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +31,16 @@
                 android:layout_height="match_parent"
                 android:paddingBottom="@dimen/detail_fieldmargin">
 
-
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/btn_ChiTiet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:rippleColor="@color/blueUi_2"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                    android:outlineSpotShadowColor="@color/blueUi_2"
+                    android:outlineAmbientShadowColor="@color/blueUi_2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
                 <TextView
                     android:id="@+id/ct6"
                     android:layout_width="wrap_content"
@@ -48,6 +58,7 @@
                     android:id="@+id/tt1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
 
                     android:layout_margin="@dimen/detail_fieldmargin"
                     android:text="Nhà cung cấp:"
@@ -62,6 +73,8 @@
                     android:text="Người lập:"
                     android:layout_marginTop="@dimen/detail_fieldmargin"
                     android:textSize="@dimen/detail_textsize"
+                    android:textColor="@color/black"
+
                     app:layout_constraintStart_toStartOf="@+id/tt1"
                     app:layout_constraintTop_toBottomOf="@+id/tt1" />
 
@@ -72,6 +85,8 @@
                     android:layout_marginTop="@dimen/detail_fieldmargin"
                     android:text="Hệ thống số:"
                     android:textSize="@dimen/detail_textsize"
+                    android:textColor="@color/black"
+
                     app:layout_constraintStart_toStartOf="@+id/tt1"
                     app:layout_constraintTop_toBottomOf="@+id/tt2" />
 
@@ -81,6 +96,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/detail_fieldmargin"
                     android:text="Ngày lập:"
+                    android:textColor="@color/black"
 
                     android:textSize="@dimen/detail_textsize"
                     app:layout_constraintStart_toStartOf="@+id/tt1"
@@ -95,6 +111,8 @@
                     android:layout_marginBottom="@dimen/detail_fieldmargin"
                     android:text="Ngày hoàn thành"
                     android:textSize="@dimen/detail_textsize"
+                    android:textColor="@color/black"
+
                     app:layout_constraintStart_toStartOf="@+id/tt1"
                     app:layout_constraintTop_toBottomOf="@+id/tt4"
                     app:layout_constraintVertical_bias="1.0" />
@@ -107,6 +125,8 @@
                     android:layout_marginTop="@dimen/detail_fieldmargin"
                     android:text="Ngày hoàn thành"
                     android:textSize="@dimen/detail_textsize"
+                    android:textColor="@color/black"
+
                     app:layout_constraintStart_toStartOf="@+id/tt1"
                     app:layout_constraintTop_toBottomOf="@+id/tt5"
                     app:layout_constraintVertical_bias="1.0" />
@@ -192,6 +212,7 @@
             android:layout_height="600dp"
             android:layout_marginTop="@dimen/margin_10"
             app:cardCornerRadius="@dimen/detail_cardround"
+            app:cardBackgroundColor="@color/blueUi_2"
             android:outlineAmbientShadowColor="@color/blueUi"
             android:outlineSpotShadowColor="@color/blueUi"
             app:layout_constraintStart_toStartOf="parent"
