@@ -11,13 +11,14 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/margin_10">
 
         <ImageView
             android:id="@+id/i1"
             android:layout_width="wrap_content"
             android:layout_height="75dp"
-            android:layout_margin="@dimen/margin_10"
+            android:layout_marginStart="@dimen/margin_10"
             android:background="@drawable/bg_round"
             android:gravity="center"
             android:src="@drawable/contract_1"
@@ -30,8 +31,8 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/mahd1"
             android:layout_marginTop="@dimen/marginItem"
+            android:text="@string/mahd1"
             app:layout_constraintStart_toStartOf="@+id/ncc"
             app:layout_constraintTop_toBottomOf="@+id/ncc" />
 
@@ -40,6 +41,7 @@
             android:id="@+id/ncc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/detail_textsize"
             android:text="Nhà cung cấp số x"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/i1"
@@ -58,8 +60,8 @@
             android:id="@+id/ma"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
             android:layout_marginStart="@dimen/marginItem"
+            android:text="1"
             app:layout_constraintBottom_toBottomOf="@+id/textView5"
             app:layout_constraintStart_toEndOf="@+id/textView5"
             app:layout_constraintTop_toTopOf="@+id/textView5"
@@ -69,11 +71,11 @@
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/text_margin"
             android:text="20/10/2000"
-            app:layout_constraintBottom_toBottomOf="@+id/i1"
+            android:layout_marginEnd="@dimen/marginItem"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ncc" />
+            app:layout_constraintTop_toBottomOf="@+id/status" />
     </android.support.constraint.ConstraintLayout>
 
 </android.support.v7.widget.CardView>

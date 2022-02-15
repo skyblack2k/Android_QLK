@@ -47,5 +47,6 @@
     <dimen name="marginItem">5dp</dimen>
     <dimen name="marginTitleMain3">40dp</dimen>
     <dimen name="contract_radius">10dp</dimen>
+    <dimen name="margin_5">5dp</dimen>
 
 </resources>
