@@ -29,7 +29,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/mahd1"
-            android:textSize="@dimen/text_size_16sp"
             android:textColor="@color/black"
             android:layout_marginStart="@dimen/text_margin"
             android:layout_marginEnd="@dimen/text_margin"
@@ -64,7 +63,6 @@
             android:layout_height="wrap_content"
             android:text="1"
             android:layout_marginStart="@dimen/text_margin"
-            android:textSize="@dimen/text_size_16sp"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/textView5"
             app:layout_constraintTop_toTopOf="@+id/i1" />
