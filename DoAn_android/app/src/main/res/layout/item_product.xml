@@ -42,7 +42,6 @@
             android:layout_height="wrap_content"
             android:text="Nhà cung cấp số x"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size_20sp"
             app:layout_constraintStart_toEndOf="@+id/i1"
             app:layout_constraintTop_toTopOf="@+id/i1" />
 
