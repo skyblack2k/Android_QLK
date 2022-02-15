@@ -335,17 +335,17 @@ public class HomeFragment extends Fragment {
         }
 
        if(Constants.UserName != null && Constants.UserName != ""){
-           lb_UserName.setText("Tài khoản: " + Constants.Name);
+           lb_UserName.setText("Tài khoản: " + Constants.UserName);
        }
        else{
            lb_UserName.setText("Tài khoản: " + "đăng nhập để hiển thị!");
        }
 
        if(Constants.RoleName != null && Constants.RoleName != ""){
-           lb_ChucVu.setText("Loại tài khoản: " + Constants.RoleName);
+           lb_ChucVu.setText("Phân quyền: " + Constants.RoleName);
        }
        else{
-           lb_ChucVu.setText("Loại tài khoản: không xác định!");
+           lb_ChucVu.setText("Phân quyền: không xác định!");
        }
    }
 }

@@ -22,6 +22,8 @@ import doan.ltn.doan_android.Interface.ItemClickListener;
 import doan.ltn.doan_android.Object.DetailTitle;
 import doan.ltn.doan_android.Object.ResultAPI.Model.ModelCTHD;
 import doan.ltn.doan_android.Object.ResultAPI.Model.ModelHopDong;
+import doan.ltn.doan_android.Object.ResultAPI.ResultFloat;
+import doan.ltn.doan_android.Object.ResultAPI.ResultHopDong;
 import doan.ltn.doan_android.Object.ResultAPI.ResultListCTHD;
 import doan.ltn.doan_android.R;
 import doan.ltn.doan_android.Shared.Constants;
@@ -79,15 +81,39 @@ public class DetailContractActivity extends AppCompatActivity {
             t3.setText("Tên hệ thống: ");
             c3.setText(detailObj.getTenHTField());
             c4.setText(detailObj.getNgayLapField());
+            t5.setText("Trạng thái:");
             if(detailObj.getTrangThaiField() == 0){
                 c5.setText("Chưa hoàn thành");
             }
             else{
                 c5.setText("Đã hoàn thành");
             }
-            c6.setVisibility(View.GONE);
 
             //API
+            RequestBody token = RequestBody.create(Constants.TEXT, Constants.Token);
+            RequestBody id = RequestBody.create(Constants.TEXT, String.valueOf(detailObj.getIdField()));
+            APIServices.apiservices.HopDong_GetProgress(token, id).enqueue(new Callback<ResultFloat>() {
+                @Override
+                public void onResponse(Call<ResultFloat> call, Response<ResultFloat> response) {
+                    try{
+                        ResultFloat rs = response.body();
+                        double data = rs.getDataField();
+                        t6.setText("Tiến độ: ");
+                        t6.setVisibility(View.VISIBLE);
+                        c6.setText(String.valueOf(data) + "%");
+                        c6.setVisibility(View.VISIBLE);
+                    }
+                    catch (Exception ex){
+                        //
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResultFloat> call, Throwable t) {
+
+                }
+            });
+
             listCTHD = new ArrayList<>();
             recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
             adapterCTHD = new CTHDAdapter(listCTHD, new ItemClickListener() {
@@ -108,6 +134,7 @@ public class DetailContractActivity extends AppCompatActivity {
     {
 
     }
+
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu_v1, menu);
         MenuItem menuItem=menu.findItem(R.id.search_bar);
@@ -129,6 +156,7 @@ public class DetailContractActivity extends AppCompatActivity {
         });
         return super.onCreateOptionsMenu(menu);
     }
+
     public void setTitle(DetailTitle title)
     {
         t1.setText(title.getC1());

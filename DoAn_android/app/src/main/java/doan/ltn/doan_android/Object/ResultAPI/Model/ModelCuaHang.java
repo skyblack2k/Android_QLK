@@ -1,6 +1,8 @@
 package doan.ltn.doan_android.Object.ResultAPI.Model;
 
-public class ModelCuaHang {
+import java.io.Serializable;
+
+public class ModelCuaHang implements Serializable {
 	private String diaChiField;
 	private int idField;
 	private String tenField;

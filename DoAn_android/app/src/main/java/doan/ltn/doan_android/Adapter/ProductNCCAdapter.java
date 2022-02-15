@@ -11,17 +11,18 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import doan.ltn.doan_android.Interface.ItemClickListener;
-import doan.ltn.doan_android.Object.ResultAPI.Model.ModelCTHD;
+import doan.ltn.doan_android.Object.ResultAPI.Model.ModelMatHang;
+import doan.ltn.doan_android.Object.ResultAPI.Model.ModelMatHangHT;
 import doan.ltn.doan_android.R;
 
-public class CTHDAdapter extends RecyclerView.Adapter<CTHDAdapter.ViewHolder> {
+public class ProductNCCAdapter extends RecyclerView.Adapter<ProductNCCAdapter.ViewHolder> {
 
-    private ArrayList<ModelCTHD> list;
+    private ArrayList<ModelMatHang> list;
     private ItemClickListener itemClickListener;
 
-    public CTHDAdapter(ArrayList<ModelCTHD> list, ItemClickListener itemClickListener) {
-    this.list = list;
-    this.itemClickListener=itemClickListener;
+    public ProductNCCAdapter(ArrayList<ModelMatHang> list, ItemClickListener itemClickListener) {
+        this.list = list;
+        this.itemClickListener=itemClickListener;
     }
 
     @NonNull
@@ -35,12 +36,12 @@ public class CTHDAdapter extends RecyclerView.Adapter<CTHDAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CTHDAdapter.ViewHolder viewHolder, int i) {
-        ModelCTHD item = list.get(i);
+    public void onBindViewHolder(@NonNull ProductNCCAdapter.ViewHolder viewHolder, int i) {
+        ModelMatHang item = list.get(i);
         viewHolder.lb_Ten.setText(String.valueOf(item.getTenField()));
         viewHolder.lb_Ma_Title.setText("Mã SP: ");
-        viewHolder.lb_Ma.setText(String.valueOf(item.getMatHangIDField()));
-        viewHolder.lb_SoLuong.setText(String.valueOf( item.getSoLuongDaGiaoField() + "/" + item.getSoLuongField()));
+        viewHolder.lb_Ma.setText(String.valueOf(item.getIdField()));
+        //viewHolder.lb_SoLuong.setText("Số lượng: " + String.valueOf(item.getSoLuongField()));
         viewHolder.lb_DonGia.setText(String.valueOf(item.getGiaField() + " VNĐ"));
         viewHolder.itemView.setOnClickListener(v -> {
             itemClickListener.onItemClickListener(i);
@@ -67,6 +68,7 @@ public class CTHDAdapter extends RecyclerView.Adapter<CTHDAdapter.ViewHolder> {
             lb_Ma = itemView.findViewById(R.id.ma);
             lb_Ma_Title = itemView.findViewById(R.id.textView5);
             lb_SoLuong = itemView.findViewById(R.id.status);
+            lb_SoLuong.setVisibility(View.GONE);
             lb_DonGia = itemView.findViewById(R.id.date);
             icon=itemView.findViewById(R.id.i1);
         }

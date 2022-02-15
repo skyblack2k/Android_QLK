@@ -1,6 +1,8 @@
 package doan.ltn.doan_android.Object.ResultAPI.Model;
 
-public class ModelNCC {
+import java.io.Serializable;
+
+public class ModelNCC implements Serializable {
 	private String diaChiField;
 	private int idField;
 	private String userNameField;

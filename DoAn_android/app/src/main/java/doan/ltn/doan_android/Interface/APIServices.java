@@ -11,6 +11,7 @@ import doan.ltn.doan_android.Object.ResultAPI.Model.ModelMatHang;
 import doan.ltn.doan_android.Object.ResultAPI.ResultBoolean;
 import doan.ltn.doan_android.Object.ResultAPI.ResultCuaHang;
 import doan.ltn.doan_android.Object.ResultAPI.ResultDashboardData;
+import doan.ltn.doan_android.Object.ResultAPI.ResultFloat;
 import doan.ltn.doan_android.Object.ResultAPI.ResultGroupID;
 import doan.ltn.doan_android.Object.ResultAPI.ResultHeThong;
 import doan.ltn.doan_android.Object.ResultAPI.ResultHopDong;
@@ -24,6 +25,7 @@ import doan.ltn.doan_android.Object.ResultAPI.ResultListMatHangHT;
 import doan.ltn.doan_android.Object.ResultAPI.ResultListNCC;
 import doan.ltn.doan_android.Object.ResultAPI.ResultListPhieuNhap;
 import doan.ltn.doan_android.Object.ResultAPI.ResultListPhieuXuat;
+import doan.ltn.doan_android.Object.ResultAPI.ResultListUser;
 import doan.ltn.doan_android.Object.ResultAPI.ResultMatHang;
 import doan.ltn.doan_android.Object.ResultAPI.ResultNCC;
 import doan.ltn.doan_android.Object.ResultAPI.ResultPhieuXuat;
@@ -78,6 +80,21 @@ public interface APIServices {
     @POST("api/TaiKhoan/GetGroupID")
     Call<ResultGroupID> User_GetGroupID(@Part("Token")RequestBody token);
 
+    @Multipart
+    @POST("api/TaiKhoan/SearchPaging")
+    Call<ResultListUser> User_SearchPaging(@Part("Token")RequestBody token,
+                                           @Part("HeThongID")RequestBody htID,
+                                           @Part("StartTime")RequestBody sTime,
+                                           @Part("EndTime")RequestBody eTime,
+                                           @Part("SearchValue")RequestBody keyword,
+                                           @Part("SearchType")RequestBody searchType,
+                                           @Part("CurPage")RequestBody curPage,
+                                           @Part("PageSize")RequestBody pageSize,
+                                           @Part("OrderBy")RequestBody orderBy,
+                                           @Part("IsDescending")RequestBody isDes,
+                                           @Part("Status")RequestBody status
+                                        );
+
     //He thong
     @Multipart
     @POST("api/HeThong/GetDetail")
@@ -109,8 +126,8 @@ public interface APIServices {
 
     @Multipart
     @POST("api/HopDong/GetProgress")
-    Call<ResultHopDong> HopDong_GetProgress(@Part("Token")RequestBody token,
-                                            @Part("ID")RequestBody id);
+    Call<ResultFloat> HopDong_GetProgress(@Part("Token")RequestBody token,
+                                          @Part("ID")RequestBody id);
 
     @Multipart
     @POST("api/HopDong/GetListCTHD")
@@ -129,9 +146,8 @@ public interface APIServices {
                                                @Part("ID")RequestBody id);
     //HeThong
     @Multipart
-    @POST("api/NhaCungCap/SeachPaging")
+    @POST("api/NhaCungCap/SearchPaging")
     Call<ResultListNCC> NhaCungCap_SearchPaging(@Part("Token")RequestBody token,
-                                                @Part("HeThongID")RequestBody htID,
                                                 @Part("StartTime")RequestBody sTime,
                                                 @Part("EndTime")RequestBody eTime,
                                                 @Part("SearchValue")RequestBody keyword,

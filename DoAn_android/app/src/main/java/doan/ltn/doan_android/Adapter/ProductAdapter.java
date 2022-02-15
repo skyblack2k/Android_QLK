@@ -44,7 +44,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         viewHolder.lb_Ten.setText(String.valueOf(item.getTenField()));
         viewHolder.lb_Ma_Title.setText("Mã SP: ");
         viewHolder.lb_Ma.setText(String.valueOf(item.getMatHangIDField()));
-        viewHolder.lb_SoLuong.setText(String.valueOf(item.getSoLuongField()));
+        viewHolder.lb_SoLuong.setText("Số lượng: " + String.valueOf(item.getSoLuongField()));
         viewHolder.lb_DonGia.setText(String.valueOf(item.getGiaField() + " VNĐ"));
         viewHolder.itemView.setOnClickListener(v -> {
             itemClickListener.onItemClickListener(i);

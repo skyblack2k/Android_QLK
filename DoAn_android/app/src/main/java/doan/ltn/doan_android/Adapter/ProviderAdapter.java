@@ -13,24 +13,25 @@ import java.util.ArrayList;
 import doan.ltn.doan_android.Interface.ItemClickListener;
 import doan.ltn.doan_android.Object.Import;
 import doan.ltn.doan_android.Object.Provider;
+import doan.ltn.doan_android.Object.ResultAPI.Model.ModelCuaHang;
+import doan.ltn.doan_android.Object.ResultAPI.Model.ModelNCC;
 import doan.ltn.doan_android.R;
 
 public class ProviderAdapter extends RecyclerView.Adapter<ProviderAdapter.ViewHolder> {
 
-    private ArrayList<Provider> lisProvider;
+    private ArrayList<ModelNCC> listNCC;
     private ItemClickListener itemClickListener;
 
-    public ProviderAdapter(ArrayList<Provider> list, ItemClickListener itemClickListener) {
-    this.lisProvider=list;
+    public ProviderAdapter(ArrayList<ModelNCC> list, ItemClickListener itemClickListener) {
+    this.listNCC = list;
     this.itemClickListener=itemClickListener;
-
     }
 
     @NonNull
 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull  ViewGroup viewGroup, int i) {
-        View view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_export,viewGroup,false);
+        View view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_product, viewGroup,false);
         ViewHolder viewHolder=new ViewHolder(view);
 
         return viewHolder;
@@ -38,11 +39,11 @@ public class ProviderAdapter extends RecyclerView.Adapter<ProviderAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ProviderAdapter.ViewHolder viewHolder, int i) {
-        Provider item=lisProvider.get(i);
-        viewHolder.ma.setText(String.valueOf(String.valueOf(item.getID())));
-        viewHolder.name.setText(String.valueOf(item.getTenNCC()));
-
-        viewHolder.date.setText(String.valueOf(item.getDiaChi()));
+        ModelNCC item = listNCC.get(i);
+        viewHolder.name.setText(item.getTenField());
+        viewHolder.lb_Title.setText("Mã NCC: " + String.valueOf(item.getIdField()));
+        viewHolder.date.setText("Địa chỉ: " + item.getDiaChiField());
+        viewHolder.status.setText("Đại diện: " + item.getHoTenField() + " (" + item.getUserNameField() + ")");
         viewHolder.itemView.setOnClickListener(v -> {
 
             itemClickListener.onItemClickListener(i);
@@ -51,8 +52,8 @@ public class ProviderAdapter extends RecyclerView.Adapter<ProviderAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        if (lisProvider !=null)
-        {return lisProvider.size();}
+        if (listNCC != null)
+        {return listNCC.size();}
         return 0;
     }
 
@@ -61,15 +62,19 @@ public class ProviderAdapter extends RecyclerView.Adapter<ProviderAdapter.ViewHo
         private TextView date;
         private TextView name;
         private TextView status;
+        private TextView lb_Title;
+        private TextView lb_DiaChi;
         private ImageView icon;
         public ViewHolder(@NonNull  View itemView) {
             super(itemView);
-                ma=itemView.findViewById(R.id.ma);
+            ma=itemView.findViewById(R.id.ma);
+            ma.setVisibility(View.GONE);
             date=itemView.findViewById(R.id.date);
             name=itemView.findViewById(R.id.ncc);
             status=itemView.findViewById(R.id.status);
+            lb_Title = itemView.findViewById(R.id.textView5);
+            lb_DiaChi = itemView.findViewById(R.id.status);
             icon=itemView.findViewById(R.id.i1);
         }
-
     }
 }

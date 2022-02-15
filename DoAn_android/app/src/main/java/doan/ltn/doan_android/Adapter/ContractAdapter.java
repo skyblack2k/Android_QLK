@@ -41,7 +41,7 @@ public class ContractAdapter extends RecyclerView.Adapter<ContractAdapter.ViewHo
     public void onBindViewHolder(@NonNull ContractAdapter.ViewHolder viewHolder, int i) {
         ModelHopDong item=list.get(i);
         viewHolder.ma.setText(String.valueOf(item.getIdField()));
-        viewHolder.name.setText(String.valueOf(item.getNhaCungCapIDField()));
+        viewHolder.name.setText(String.valueOf(item.getTenNCCField()));
         viewHolder.date.setText(String.valueOf(item.getNgayLapField()));
         if(item.getTrangThaiField() == 0){
             viewHolder.status.setText("Chưa hoàn thành");

@@ -75,7 +75,6 @@ public class SettingFragment extends Fragment {
         } catch (Exception exception) {
 
         }
-
     }
 
     public void getData() {
