@@ -16,4 +16,16 @@ public class Constants {
     //Content type
     public static MediaType TEXT = MediaType.parse("text/plain");
     //...
+
+    public static void Clear(){
+        Token = "";
+        UserName = "";
+        Name = "";
+        RoleID = -1;
+        RoleName = "";
+        HeThongID = -1;
+        CuaHangID = -1;
+        NhaCungCapID = -1;
+        IsLogin = false;
+    }
 }

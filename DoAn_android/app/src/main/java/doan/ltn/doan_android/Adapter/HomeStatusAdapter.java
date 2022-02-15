@@ -38,12 +38,11 @@ public class HomeStatusAdapter extends RecyclerView.Adapter<HomeStatusAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull HomeStatusAdapter.ViewHolder viewHolder, int i) {
-        Status item=list.get(i);
+        Status item = list.get(i);
         viewHolder.status.setText(item.getTitle());
         viewHolder.sl.setText(String.valueOf(item.getCount()));
 
         viewHolder.itemView.setOnClickListener(v -> {
-
             itemClickListener.onItemClickListener(i);
         });
     }

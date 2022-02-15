@@ -14,17 +14,17 @@ import doan.ltn.doan_android.Interface.ItemButtomOnClick;
 import doan.ltn.doan_android.Interface.ItemClickListener;
 import doan.ltn.doan_android.Object.ButtomItem;
 import doan.ltn.doan_android.Object.Contract;
+import doan.ltn.doan_android.Object.ResultAPI.Model.ModelHopDong;
 import doan.ltn.doan_android.R;
 
 public class ContractAdapter extends RecyclerView.Adapter<ContractAdapter.ViewHolder> {
 
-    private ArrayList<Contract> list;
+    private ArrayList<ModelHopDong> list;
     private ItemClickListener itemClickListener;
 
-    public ContractAdapter(ArrayList<Contract> list, ItemClickListener itemClickListener) {
-    this.list=list;
-    this.itemClickListener=itemClickListener;
-
+    public ContractAdapter(ArrayList<ModelHopDong> list, ItemClickListener itemClickListener) {
+    this.list = list;
+    this.itemClickListener = itemClickListener;
     }
 
     @NonNull
@@ -39,13 +39,18 @@ public class ContractAdapter extends RecyclerView.Adapter<ContractAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ContractAdapter.ViewHolder viewHolder, int i) {
-        Contract item=list.get(i);
-        viewHolder.ma.setText(String.valueOf(item.getMaHD()));
-        viewHolder.name.setText(String.valueOf(item.getNCC()));
+        ModelHopDong item=list.get(i);
+        viewHolder.ma.setText(String.valueOf(item.getIdField()));
+        viewHolder.name.setText(String.valueOf(item.getNhaCungCapIDField()));
+        viewHolder.date.setText(String.valueOf(item.getNgayLapField()));
+        if(item.getTrangThaiField() == 0){
+            viewHolder.status.setText("Chưa hoàn thành");
+        }
+        else{
+            viewHolder.status.setText("Đã hoàn thành");
+        }
 
-        viewHolder.date.setText(String.valueOf(item.getNgayLap()));
         viewHolder.itemView.setOnClickListener(v -> {
-
             itemClickListener.onItemClickListener(i);
         });
     }

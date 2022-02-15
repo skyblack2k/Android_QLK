@@ -11,19 +11,17 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import doan.ltn.doan_android.Interface.ItemClickListener;
-import doan.ltn.doan_android.Object.Contract;
-import doan.ltn.doan_android.Object.ResultAPI.Model.ModelUser;
+import doan.ltn.doan_android.Object.ResultAPI.Model.ModelCTHD;
 import doan.ltn.doan_android.R;
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
+public class CTHDAdapter extends RecyclerView.Adapter<CTHDAdapter.ViewHolder> {
 
-    private ArrayList<ModelUser> list;
+    private ArrayList<ModelCTHD> list;
     private ItemClickListener itemClickListener;
 
-    public UserAdapter(ArrayList<ModelUser> list, ItemClickListener itemClickListener) {
-    this.list=list;
+    public CTHDAdapter(ArrayList<ModelCTHD> list, ItemClickListener itemClickListener) {
+    this.list = list;
     this.itemClickListener=itemClickListener;
-
     }
 
     @NonNull
@@ -37,11 +35,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UserAdapter.ViewHolder viewHolder, int i) {
-        ModelUser item=list.get(i);
-        viewHolder.lb_HoTen.setText(item.getHoTenField());
-        viewHolder.lb_UserName.setText("Tài khoản: " + item.getUserNameField());
-        viewHolder.lb_PhanQuyen.setText("Phân quyền: " + item.getPhanQuyenField());
+    public void onBindViewHolder(@NonNull CTHDAdapter.ViewHolder viewHolder, int i) {
+        ModelCTHD item = list.get(i);
+        viewHolder.lb_Ten.setText(String.valueOf(item.getTenField()));
+        viewHolder.lb_Ma_Title.setText("Mã SP: ");
+        viewHolder.lb_Ma.setText(String.valueOf(item.getMatHangIDField()));
+        viewHolder.lb_SoLuong.setText(String.valueOf(item.getSoLuongField()));
+        viewHolder.lb_DonGia.setText(String.valueOf(item.getGiaField() + " VNĐ"));
         viewHolder.itemView.setOnClickListener(v -> {
             itemClickListener.onItemClickListener(i);
         });
@@ -55,22 +55,21 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends  RecyclerView.ViewHolder{
-        private TextView lb_UserName;
-        private TextView lb_HoTen;
-        private TextView lb_PhanQuyen;
-        private TextView lb_NgaySinh;
+        private TextView lb_Ten;
+        private TextView lb_SoLuong;
+        private TextView lb_Ma_Title;
+        private TextView lb_Ma;
+        private TextView lb_DonGia;
         private ImageView icon;
-        private  TextView lb_Hidden;
         public ViewHolder(@NonNull  View itemView) {
             super(itemView);
-            lb_HoTen = itemView.findViewById(R.id.ncc);
-            lb_UserName = itemView.findViewById(R.id.textView5);
-            lb_Hidden = itemView.findViewById(R.id.ma);
-            lb_Hidden.setVisibility(View.GONE);
-            lb_PhanQuyen = itemView.findViewById(R.id.status);
-            lb_NgaySinh = itemView.findViewById(R.id.date);
-            lb_NgaySinh.setVisibility(View.GONE);
+            lb_Ten = itemView.findViewById(R.id.ncc);
+            lb_Ma = itemView.findViewById(R.id.ma);
+            lb_Ma_Title = itemView.findViewById(R.id.textView5);
+            lb_SoLuong = itemView.findViewById(R.id.status);
+            lb_DonGia = itemView.findViewById(R.id.date);
             icon=itemView.findViewById(R.id.i1);
         }
+
     }
 }

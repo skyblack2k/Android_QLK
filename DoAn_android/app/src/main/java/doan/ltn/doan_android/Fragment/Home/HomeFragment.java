@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.reflect.Executable;
@@ -21,10 +22,14 @@ import doan.ltn.doan_android.Adapter.HomeStatusAdapter;
 import doan.ltn.doan_android.Interface.APIServices;
 import doan.ltn.doan_android.Interface.ItemButtomOnClick;
 import doan.ltn.doan_android.Interface.ItemClickListener;
+import doan.ltn.doan_android.MainActivity;
 import doan.ltn.doan_android.Object.ButtomItem;
 import doan.ltn.doan_android.Object.ResultAPI.Model.ModelDashboardData;
+import doan.ltn.doan_android.Object.ResultAPI.Model.ModelUser;
+import doan.ltn.doan_android.Object.ResultAPI.ResultBoolean;
 import doan.ltn.doan_android.Object.ResultAPI.ResultDashboardData;
 import doan.ltn.doan_android.Object.ResultAPI.ResultGroupID;
+import doan.ltn.doan_android.Object.ResultAPI.ResultUser;
 import doan.ltn.doan_android.Object.Status;
 import doan.ltn.doan_android.Page.Contract.ContractActivity;
 import doan.ltn.doan_android.Page.Export.ExportActivity;
@@ -47,10 +52,12 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
     ConstraintLayout bLayout;
     RecyclerView statusView;
+    //User info
+    TextView lb_HoTen, lb_UserName, lb_ChucVu;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -62,12 +69,14 @@ public class HomeFragment extends Fragment {
        getID(view);
        getData(view);
 
-
-
         return view;
     }
 
     private void getData(View view) {
+        //Get global data
+        getData();
+
+        //
         list.add(new ButtomItem(R.drawable.factory_1,"Nhà cung cấp",1));
         list.add(new ButtomItem(R.drawable.shop_6,"Cửa hàng",2));
         list.add(new ButtomItem(R.drawable.log,"Lịch sử",3));
@@ -146,6 +155,7 @@ public class HomeFragment extends Fragment {
             SetStatus(null);
         }
     }
+
     public void getID(View view)
    {
        bLayout= (ConstraintLayout) view.findViewById(R.id.btn_frame);
@@ -155,6 +165,102 @@ public class HomeFragment extends Fragment {
        statusView.setLayoutManager(new GridLayoutManager(view.getContext(),2));
        list=new ArrayList<>();
        listStatus=new ArrayList<>();
+       //User info
+       lb_HoTen = (TextView) view.findViewById(R.id.TenNguoiDung);
+       lb_UserName = (TextView) view.findViewById(R.id.TenTaiKhoan);
+       lb_ChucVu = (TextView) view.findViewById(R.id.ChucVu);
+   }
+
+   public void getData(){
+       //CheckLogin
+       try
+       {
+           RequestBody token = RequestBody.create(Constants.TEXT, Constants.Token);
+           APIServices.apiservices.User_CheckLogin(token).enqueue(new Callback<ResultBoolean>() {
+               @Override
+               public void onResponse(Call<ResultBoolean> call, Response<ResultBoolean> response) {
+                   try{
+                       ResultBoolean rs = response.body();
+                       if(response.isSuccessful()){
+                           if(rs != null)
+                               if(rs.getErrCodeField() == 2){
+                                   if(!rs.isDataField()) {
+                                       //Chưa đăng nhập
+                                       Toast.makeText(getActivity(), "Phiên đăng nhập hết hạn!", Toast.LENGTH_LONG).show();
+                                       getActivity().finish();
+                                   }
+                                   else{
+                                       //Get user info
+                                       RequestBody token = RequestBody.create(Constants.TEXT, Constants.Token);
+                                       APIServices.apiservices.User_GetUser(token).enqueue(new Callback<ResultUser>() {
+                                           @Override
+                                           public void onResponse(Call<ResultUser> call, Response<ResultUser> response) {
+                                               try{
+                                                   ResultUser rs = response.body();
+                                                   ModelUser curUser = rs.getDataField();
+                                                   Constants.UserName = curUser.getUserNameField();
+                                                   Constants.Name = curUser.getHoTenField();
+                                                   Constants.RoleID = curUser.getPhanQuyenIDField();
+                                                   Constants.RoleName = curUser.getPhanQuyenField();
+                                               }
+                                               catch (Exception ex){
+                                                   Toast.makeText(getActivity(), "Get user info ex: " + ex.getMessage(), Toast.LENGTH_LONG).show();
+                                               }
+
+                                               SetUserInfo();
+                                           }
+
+                                           @Override
+                                           public void onFailure(Call<ResultUser> call, Throwable t) {
+                                               SetUserInfo();
+                                           }
+                                       });
+
+                                       //Get group id
+                                       APIServices.apiservices.User_GetGroupID(token).enqueue(new Callback<ResultGroupID>() {
+                                           @Override
+                                           public void onResponse(Call<ResultGroupID> call, Response<ResultGroupID> response) {
+                                               try{
+                                                   ResultGroupID rs = response.body();
+                                                   Constants.HeThongID = rs.getDataField().getHeThongIDField();
+                                                   Constants.CuaHangID = rs.getDataField().getCuaHangIDField();
+                                                   Constants.NhaCungCapID = rs.getDataField().getNhaCungCapIDField();
+                                               }
+                                               catch (Exception ex){
+                                                   //
+                                               }
+                                           }
+
+                                           @Override
+                                           public void onFailure(Call<ResultGroupID> call, Throwable t) {
+                                               //
+                                           }
+                                       });
+                                   }
+                               }
+                               else{
+                                   Toast.makeText(getActivity(), "Null reponse! " , Toast.LENGTH_LONG).show();
+                               }
+                           }
+                           else{
+                               Toast.makeText(getActivity(), "Response error: " + response.code() + " " + response.message(), Toast.LENGTH_LONG).show();
+                           }
+                       }
+                       catch (Exception ex){
+                            //
+                       }
+                   }
+
+               @Override
+               public void onFailure(Call<ResultBoolean> call, Throwable t) {
+                   Toast.makeText(getActivity(), "Fail call: " + t.getMessage(), Toast.LENGTH_LONG).show();
+               }
+           });
+       }
+       catch (Exception exception)
+       {
+            //
+       }
    }
 
    private void SetStatus(ModelDashboardData dashboardData){
@@ -182,9 +288,64 @@ public class HomeFragment extends Fragment {
        statusAdapter= new HomeStatusAdapter(listStatus, new ItemClickListener() {
            @Override
            public void onItemClickListener(int i) {
-
+                switch (i){
+                    case 0:
+                    case 2:
+                    case 4:
+                        Intent intentHD = new Intent(getContext(), ContractActivity.class);
+                        if(i == 2){
+                            intentHD.putExtra("_status", 0);
+                        }
+                        else if(i == 4){
+                            intentHD.putExtra("_status", 1);
+                        }
+                        startActivity(intentHD);
+                        break;
+                    case 1:
+                    case 3:
+                    case 5:
+                    case 7:
+                        Intent intentYC = new Intent(getContext(), ExportActivity.class);
+                        if(i == 3){
+                            intentYC.putExtra("_status", 0);
+                        }
+                        else if(i == 5){
+                            intentYC.putExtra("_status", 1);
+                        }
+                        else if(i == 7){
+                            intentYC.putExtra("_status", 2);
+                        }
+                        startActivity(intentYC);
+                        break;
+                    default:
+                        Toast.makeText(getActivity(), "Chức năng đang bị khóa để bảo trì!", Toast.LENGTH_LONG);
+                        break;
+                }
            }
        });
        statusView.setAdapter(statusAdapter);
+   }
+
+   private void SetUserInfo(){
+        if(Constants.Name != null && Constants.Name != ""){
+            lb_HoTen.setText(Constants.Name);
+        }
+        else{
+            lb_HoTen.setText("Chưa đăng nhập!");
+        }
+
+       if(Constants.UserName != null && Constants.UserName != ""){
+           lb_UserName.setText("Tài khoản: " + Constants.Name);
+       }
+       else{
+           lb_UserName.setText("Tài khoản: " + "đăng nhập để hiển thị!");
+       }
+
+       if(Constants.RoleName != null && Constants.RoleName != ""){
+           lb_ChucVu.setText("Loại tài khoản: " + Constants.RoleName);
+       }
+       else{
+           lb_ChucVu.setText("Loại tài khoản: không xác định!");
+       }
    }
 }

@@ -1,10 +1,12 @@
 package doan.ltn.doan_android;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -35,102 +37,6 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.button_nav);
         getSupportFragmentManager().beginTransaction().replace(R.id.subactivity, new HomeFragment()).commit();
 
-        //CheckLogin
-        try
-        {
-            RequestBody token = RequestBody.create(Constants.TEXT, Constants.Token);
-            APIServices.apiservices.User_CheckLogin(token).enqueue(new Callback<ResultBoolean>() {
-                @Override
-                public void onResponse(Call<ResultBoolean> call, Response<ResultBoolean> response) {
-                    ResultBoolean rs = response.body();
-                    if(response.isSuccessful()){
-                        if(rs != null)
-                            if(rs.getErrCodeField() == 2){
-                                if(!rs.isDataField()) {
-                                    //Chưa đăng nhập
-                                    Toast.makeText(MainActivity.this, "Phiên đăng nhập hết hạn!", Toast.LENGTH_LONG).show();
-                                    MainActivity.this.finish();
-                                }
-                                else{
-                                    //Get user info
-                                    RequestBody token = RequestBody.create(Constants.TEXT, Constants.Token);
-                                    APIServices.apiservices.User_GetUser(token).enqueue(new Callback<ResultUser>() {
-                                        @Override
-                                        public void onResponse(Call<ResultUser> call, Response<ResultUser> response) {
-                                            ResultUser rs = response.body();
-                                            if(response.isSuccessful()){
-                                                if(rs != null)
-                                                    if(rs.getErrCodeField() == 2){
-                                                        Constants.UserName = rs.getDataField().getUserNameField();
-                                                        Constants.Name = rs.getDataField().getHoTenField();
-                                                        Constants.RoleID = rs.getDataField().getPhanQuyenIDField();
-                                                        Constants.RoleName = rs.getDataField().getPhanQuyenField();
-                                                    }
-                                                    else{
-                                                        //
-                                                    }
-                                            }
-                                            else{
-                                                //
-                                            }
-                                        }
-
-                                        @Override
-                                        public void onFailure(Call<ResultUser> call, Throwable t) {
-                                            //
-                                        }
-                                    });
-
-                                    //Get group id
-                                    APIServices.apiservices.User_GetGroupID(token).enqueue(new Callback<ResultGroupID>() {
-                                        @Override
-                                        public void onResponse(Call<ResultGroupID> call, Response<ResultGroupID> response) {
-                                            ResultGroupID rs = response.body();
-                                            if(response.isSuccessful()){
-                                                if(rs != null)
-                                                    if(rs.getErrCodeField() == 2){
-                                                        Constants.HeThongID = rs.getDataField().getHeThongIDField();
-                                                        Constants.CuaHangID = rs.getDataField().getCuaHangIDField();
-                                                        Constants.NhaCungCapID = rs.getDataField().getNhaCungCapIDField();
-                                                    }
-                                                    else{
-
-                                                    }
-                                            }
-                                            else{
-                                                //
-                                            }
-                                        }
-
-                                        @Override
-                                        public void onFailure(Call<ResultGroupID> call, Throwable t) {
-                                            //
-                                        }
-                                    });
-                                }
-                            }
-                            else{
-                                Toast.makeText(MainActivity.this, "Null reponse! " , Toast.LENGTH_LONG).show();
-                            }
-                    }
-                    else{
-                        Toast.makeText(MainActivity.this, "Response error: " + response.code() + " " + response.message(), Toast.LENGTH_LONG).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<ResultBoolean> call, Throwable t) {
-                    Toast.makeText(MainActivity.this, "Fail call: " + t.getMessage(), Toast.LENGTH_LONG).show();
-                }
-            });
-
-
-        }
-        catch (Exception exception)
-        {
-
-        }
-
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -159,4 +65,25 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+
+        AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage("Bạn có muốn đăng xuất");
+        builder.setPositiveButton("Đăng xuất", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Constants.Clear();
+                finish();
+            }
+        });
+        builder.setNegativeButton("Quay lại", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog=builder.create();
+        alertDialog.show();
+    }
 }

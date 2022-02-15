@@ -12,6 +12,7 @@ import doan.ltn.doan_android.Object.ResultAPI.ResultBoolean;
 import doan.ltn.doan_android.Object.ResultAPI.ResultCuaHang;
 import doan.ltn.doan_android.Object.ResultAPI.ResultDashboardData;
 import doan.ltn.doan_android.Object.ResultAPI.ResultGroupID;
+import doan.ltn.doan_android.Object.ResultAPI.ResultHeThong;
 import doan.ltn.doan_android.Object.ResultAPI.ResultHopDong;
 import doan.ltn.doan_android.Object.ResultAPI.ResultListCTHD;
 import doan.ltn.doan_android.Object.ResultAPI.ResultListCTPN;
@@ -19,6 +20,7 @@ import doan.ltn.doan_android.Object.ResultAPI.ResultListCTPX;
 import doan.ltn.doan_android.Object.ResultAPI.ResultListCuaHang;
 import doan.ltn.doan_android.Object.ResultAPI.ResultListHopDong;
 import doan.ltn.doan_android.Object.ResultAPI.ResultListMatHang;
+import doan.ltn.doan_android.Object.ResultAPI.ResultListMatHangHT;
 import doan.ltn.doan_android.Object.ResultAPI.ResultListNCC;
 import doan.ltn.doan_android.Object.ResultAPI.ResultListPhieuNhap;
 import doan.ltn.doan_android.Object.ResultAPI.ResultListPhieuXuat;
@@ -79,8 +81,8 @@ public interface APIServices {
     //He thong
     @Multipart
     @POST("api/HeThong/GetDetail")
-    Call<ResultUser> HeThong_GetDetail(@Part("Token")RequestBody token,
-                                      @Part("ID")RequestBody id);
+    Call<ResultHeThong> HeThong_GetDetail(@Part("Token")RequestBody token,
+                                          @Part("ID")RequestBody id);
 
 
     //HopDong
@@ -161,16 +163,16 @@ public interface APIServices {
 
     @Multipart
     @POST("api/MatHang/SearchPagingHT")
-    Call<ResultListMatHang> MatHang_SearchPagingHT(@Part("Token")RequestBody token,
-                                                    @Part("HeThongID")RequestBody htID,
-                                                    @Part("StartTime")RequestBody sTime,
-                                                    @Part("EndTime")RequestBody eTime,
-                                                    @Part("SearchValue")RequestBody keyword,
-                                                    @Part("SearchType")RequestBody searchType,
-                                                    @Part("CurPage")RequestBody curPage,
-                                                    @Part("PageSize")RequestBody pageSize,
-                                                    @Part("OrderBy")RequestBody orderBy,
-                                                    @Part("IsDescending")RequestBody isDes);
+    Call<ResultListMatHangHT> MatHang_SearchPagingHT(@Part("Token")RequestBody token,
+                                                     @Part("HeThongID")RequestBody htID,
+                                                     @Part("StartTime")RequestBody sTime,
+                                                     @Part("EndTime")RequestBody eTime,
+                                                     @Part("SearchValue")RequestBody keyword,
+                                                     @Part("SearchType")RequestBody searchType,
+                                                     @Part("CurPage")RequestBody curPage,
+                                                     @Part("PageSize")RequestBody pageSize,
+                                                     @Part("OrderBy")RequestBody orderBy,
+                                                     @Part("IsDescending")RequestBody isDes);
 
     @Multipart
     @POST("api/MatHang/SearchPagingHD")

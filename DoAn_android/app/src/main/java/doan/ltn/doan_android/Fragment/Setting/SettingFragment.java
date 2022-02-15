@@ -16,7 +16,17 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import doan.ltn.doan_android.Interface.APIServices;
+import doan.ltn.doan_android.Object.ResultAPI.Model.ModelHeThong;
+import doan.ltn.doan_android.Object.ResultAPI.Model.ModelUser;
+import doan.ltn.doan_android.Object.ResultAPI.ResultHeThong;
+import doan.ltn.doan_android.Object.ResultAPI.ResultUser;
 import doan.ltn.doan_android.R;
+import doan.ltn.doan_android.Shared.Constants;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class SettingFragment extends Fragment {
@@ -51,6 +61,7 @@ public class SettingFragment extends Fragment {
             chucvu=(TextView) view.findViewById(R.id.c3);
             ngaytao=(TextView) view.findViewById(R.id.c4);
             diachi=(TextView) view.findViewById(R.id.c5);
+            //
             tenHT=(TextView) view.findViewById(R.id.ct1);
             sdtHT=(TextView) view.findViewById(R.id.ct2);
             stkHT=(TextView) view.findViewById(R.id.ct3);
@@ -69,9 +80,58 @@ public class SettingFragment extends Fragment {
 
     public void getData() {
         try {
+            RequestBody token = RequestBody.create(Constants.TEXT, Constants.Token);
+            APIServices.apiservices.User_GetUser(token).enqueue(new Callback<ResultUser>() {
+                @Override
+                public void onResponse(Call<ResultUser> call, Response<ResultUser> response) {
+                    try{
+                        ResultUser rs = response.body();
+                        ModelUser user = rs.getDataField();
+                        name.setText(user.getHoTenField());
+                        username.setText("Tài khoản: " + user.getPhanQuyenField());
+                        ngaysinh.setText(user.getNgaySinhField());
+                        sdt.setText(user.getSDTField());
+                        chucvu.setText(user.getChucVuField());
+                        diachi.setText(user.getDiaChiField());
+                    }
+                    catch (Exception ex){
+                        //Không có dữ liệu
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResultUser> call, Throwable t) {
+                    //
+                }
+            });
+
+            RequestBody id = RequestBody.create(Constants.TEXT, String.valueOf(Constants.HeThongID));
+            APIServices.apiservices.HeThong_GetDetail(token, id).enqueue(new Callback<ResultHeThong>() {
+                @Override
+                public void onResponse(Call<ResultHeThong> call, Response<ResultHeThong> response) {
+                    try{
+                        ResultHeThong rs = response.body();
+                        ModelHeThong ht = rs.getDataField();
+                        tenHT.setText(ht.getTenField());
+                        sdtHT.setText(ht.getSDTField());
+                        stkHT.setText(ht.getSTKField());
+                        nganhangHT.setText(ht.getNganHangField());
+                        ngaylapHT.setText(ht.getNgayTaoField());
+                        diachiHT.setText(ht.getDiaChiField());
+                    }
+                    catch (Exception ex){
+                        //Không có dữ liệu
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResultHeThong> call, Throwable t) {
+                    //
+                }
+            });
 
         } catch (Exception exception) {
-
+            //
         }
     }
 

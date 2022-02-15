@@ -1,22 +1,24 @@
 package doan.ltn.doan_android.Object;
 
 public class Contract {
-    private  int MaHD;
-    private  String NguoiLap;
-    private  String NCC;
-    private  int HeThong;
+    private int MaHD;
+    private String NguoiLap;
+    private String NCC;
+    private int HeThong;
     private String NgayLap;
-    private  String NgayHT;
+    private String NgayHT;
+    private int TrangThai;
 
 //    public Contract(){
 //        //
 //    }
-    public Contract(int maHD, String nguoiLap, String NCC, int heThong, String ngayLap) {
-        MaHD = maHD;
-        NguoiLap = nguoiLap;
+    public Contract(int maHD, String nguoiLap, String NCC, int heThong, String ngayLap, int trangThai) {
+        this.MaHD = maHD;
+        this.NguoiLap = nguoiLap;
         this.NCC = NCC;
-        HeThong = heThong;
-        NgayLap = ngayLap;
+        this.HeThong = heThong;
+        this.NgayLap = ngayLap;
+        this.TrangThai = trangThai;
     }
 
     public int getMaHD() {
@@ -66,4 +68,8 @@ public class Contract {
     public void setNgayHT(String ngayHT) {
         NgayHT = ngayHT;
     }
+
+    public int getTrangThai() { return TrangThai;}
+
+    public void setTrangThai(int trangThai) { TrangThai = trangThai;}
 }

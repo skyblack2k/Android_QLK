@@ -1,6 +1,10 @@
 package doan.ltn.doan_android.Object.ResultAPI.Model;
 
-public class ModelHopDong {
+import androidx.navigation.NavType;
+
+import java.io.Serializable;
+
+public class ModelHopDong implements Serializable {
 	private int nguoiLapField;
 	private int idField;
 	private Object ngayHTField;

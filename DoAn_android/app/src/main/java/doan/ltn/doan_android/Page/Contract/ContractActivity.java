@@ -37,7 +37,7 @@ import retrofit2.Response;
 
 public class ContractActivity extends AppCompatActivity {
     ContractAdapter adapter;
-    ArrayList<Contract> list;
+    ArrayList<ModelHopDong> list;
     RecyclerView recyclerView;
     Spinner spinner;
     Button btn_sort;
@@ -92,24 +92,25 @@ public class ContractActivity extends AppCompatActivity {
 
     public void getData()
     {
+        Intent intent = getIntent();
         //Initialize
         _startTime = null;
         _endTime = null;
-        _searchValue = "";
-        _searchType = 0;
+        _searchValue = intent.getStringExtra("_searchValue") != null? intent.getStringExtra("_serachValue"): "";
+        _searchType = intent.getIntExtra("_searchType", 0);
         _curPage = 1;
-        _pageSize = 10;
+        _pageSize = 20;
         _orderBy = 0;
         _isDes = false;
-        _status = -1;
+        _status = intent.getIntExtra("_status", -1);
         //Show list
         list = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
         adapter = new ContractAdapter(list, new ItemClickListener() {
             @Override
             public void onItemClickListener(int i) {
-
-                Intent intent =new Intent(ContractActivity.this,DetailContractActivity.class);
+                Intent intent =new Intent(ContractActivity.this, DetailContractActivity.class);
+                intent.putExtra("DetailObj", list.get(i));
                 startActivity(intent);
             }
         });
@@ -133,6 +134,7 @@ public class ContractActivity extends AppCompatActivity {
                         _status = -1;
                         break;
                 }
+                list.clear();
                 Toast.makeText(ContractActivity.this, String.valueOf(_status), Toast.LENGTH_LONG).show();
                 Search();
             }
@@ -147,7 +149,7 @@ public class ContractActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                //
             }
         });
     }
@@ -227,8 +229,13 @@ public class ContractActivity extends AppCompatActivity {
                         ResultListHopDong rs = response.body();
                         List<ModelHopDong> listHD = rs.getDataField();
                         SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm dd/MM/yyyy");
-                        for(ModelHopDong item : listHD){
-                            list.add(new Contract(item.getIdField(), item.getHoTenField(), item.getTenNCCField(), item.getHeThongIDField(), item.getNgayLapField()));
+                        if(listHD != null){
+                            for(ModelHopDong item : listHD){
+                                list.add(item);
+                            }
+                        }
+                        else{
+                            Toast.makeText(ContractActivity.this, "Không tìm thấy dữ liệu phù hợp!", Toast.LENGTH_LONG);
                         }
                         RefreshList();
                     }

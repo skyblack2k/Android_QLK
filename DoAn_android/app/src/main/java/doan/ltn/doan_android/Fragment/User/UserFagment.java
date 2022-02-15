@@ -14,6 +14,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import doan.ltn.doan_android.Adapter.UserAdapter;
+import doan.ltn.doan_android.Object.Product;
+import doan.ltn.doan_android.Object.ResultAPI.Model.ModelUser;
 import doan.ltn.doan_android.R;
 
 
@@ -26,8 +29,9 @@ public class UserFagment extends Fragment {
     private RadioButton a1, a2, a3, a4;
     private RecyclerView recyclerView;
     private RadioGroup radioGroup;
-    private  TextView sortTitle;
-
+    private TextView sortTitle;
+    private UserAdapter adapterUser;
+    private ArrayList<ModelUser> listUser;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

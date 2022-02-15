@@ -13,17 +13,19 @@ import java.util.ArrayList;
 import doan.ltn.doan_android.Interface.ItemClickListener;
 import doan.ltn.doan_android.Object.Contract;
 import doan.ltn.doan_android.Object.Product;
+import doan.ltn.doan_android.Object.ResultAPI.Model.ModelCTHD;
+import doan.ltn.doan_android.Object.ResultAPI.Model.ModelMatHang;
+import doan.ltn.doan_android.Object.ResultAPI.Model.ModelMatHangHT;
 import doan.ltn.doan_android.R;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
 
-    private ArrayList<Product> list;
+    private ArrayList<ModelMatHangHT> list;
     private ItemClickListener itemClickListener;
 
-    public ProductAdapter(ArrayList<Product> list, ItemClickListener itemClickListener) {
-    this.list=list;
+    public ProductAdapter(ArrayList<ModelMatHangHT> list, ItemClickListener itemClickListener) {
+    this.list = list;
     this.itemClickListener=itemClickListener;
-
     }
 
     @NonNull
@@ -38,13 +40,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ProductAdapter.ViewHolder viewHolder, int i) {
-        Product item=list.get(i);
-        viewHolder.ma.setText(String.valueOf(item.getID()));
-        viewHolder.name.setText(String.valueOf(item.getTenSP()));
-        viewHolder.date.setText(String.valueOf(String.valueOf(item.getGia())));
-        viewHolder.status.setText("Số lượng: "+item.getSL());
+        ModelMatHangHT item = list.get(i);
+        viewHolder.lb_Ten.setText(String.valueOf(item.getTenField()));
+        viewHolder.lb_Ma_Title.setText("Mã SP: ");
+        viewHolder.lb_Ma.setText(String.valueOf(item.getMatHangIDField()));
+        viewHolder.lb_SoLuong.setText(String.valueOf(item.getSoLuongField()));
+        viewHolder.lb_DonGia.setText(String.valueOf(item.getGiaField() + " VNĐ"));
         viewHolder.itemView.setOnClickListener(v -> {
-
             itemClickListener.onItemClickListener(i);
         });
     }
@@ -57,17 +59,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     public class ViewHolder extends  RecyclerView.ViewHolder{
-        private TextView ma;
-        private TextView date;
-        private TextView name;
-        private TextView status;
+        private TextView lb_Ten;
+        private TextView lb_SoLuong;
+        private TextView lb_Ma_Title;
+        private TextView lb_Ma;
+        private TextView lb_DonGia;
         private ImageView icon;
         public ViewHolder(@NonNull  View itemView) {
             super(itemView);
-                ma=itemView.findViewById(R.id.ma);
-            date=itemView.findViewById(R.id.date);
-            name=itemView.findViewById(R.id.ncc);
-            status=itemView.findViewById(R.id.status);
+            lb_Ten = itemView.findViewById(R.id.ncc);
+            lb_Ma = itemView.findViewById(R.id.ma);
+            lb_Ma_Title = itemView.findViewById(R.id.textView5);
+            lb_SoLuong = itemView.findViewById(R.id.status);
+            lb_DonGia = itemView.findViewById(R.id.date);
             icon=itemView.findViewById(R.id.i1);
         }
 
