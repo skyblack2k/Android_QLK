@@ -42,6 +42,7 @@
         <item>Giảm dần</item>
     </string-array>
     <string-array name="role">
+        <item>Tất cả</item>
         <item>Quản lý</item>
         <item>Nhân viên</item>
         <item>Cửa hàng</item>
